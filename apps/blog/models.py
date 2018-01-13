@@ -11,12 +11,12 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, null=True)
-    body = models.CharField(max_length=5000)
+    body = models.TextField(max_length=5000)
     tags = models.ManyToManyField(Tag, blank=True, null=True)
     banner = models.CharField(max_length=2000, blank=True, null=True)
     user = models.ForeignKey(User, models.PROTECT)
     edit_date = models.DateTimeField(auto_now=True)
-    post_date = models.DateTimeField()
+    published_date = models.DateTimeField()
 
     def __str__(self):
         return self.title

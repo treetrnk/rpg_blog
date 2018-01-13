@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12 wall">
+						<br />
+
+						{% for p in posts %}
+
+						<div class="brick thumbnail">
+							<a href="">
+								<img src="https://img00.deviantart.net/7599/i/2015/246/5/c/_color__masters_of_umdaar__phantom_realms_by_eeren-d987jk8.jpg" />
+							</a>
+							<div class="caption">
+								<a href=""><h3>{{ p.title }}</h3></a>
+								<i>{{ p.published_date }}</i><br />
+								<!---
+								In our Masters of Umdaar game last night, the players created an aspect that is probably the funniest aspect I’ve ever seen in a Fate game. It was Rampaging Dehydrated Sharkman....
+								--->
+								{% for tag in p.tags.all %}
+								<span class="label label-default">{{ tag }}</span>
+								{% endfor %}
+							</div>
+						</div>
+
+						{% endfor %}
+
+						<!---
+						<div class="brick thumbnail">
+							<img src="http://rpg.nathanhare.net/images/banners/mouse-guard.jpg" />
+							<div class="caption">
+								<h3>Fate of the Mouse Guard</h3>
+								<i>April 13, 2017</i><br />
+								In our Masters of Umdaar game last night, the players created an aspect that is probably the funniest aspect I’ve ever seen in a Fate game. It was Rampaging Dehydrated Sharkman....
+
+							</div>
+						</div>
+						<div class="brick thumbnail">
+							<img src="http://rpg.nathanhare.net/images/banners/acyrus-banner.png" />
+							<div class="caption">
+								<h3>11 The Battle of the Shadow Knight</h3>
+								<i>April 13, 2017</i><br />
+							Unde nulla modi cumque laboriosam et delectus hic. Voluptatem cupiditate voluptate cum excepturi dolor voluptates cupiditate in. Quia quaerat ab ex cupiditate labore non quis. In molestiae temporibus sit voluptates architecto maiores necessitatibus saepe.
+
+							</div>
+						</div>
+						<div class="brick thumbnail">
+							<img src="http://rpg.nathanhare.net/images/banners/dungeons-banner.png" />
+							<div class="caption">
+								<h3>Dungeons in Fate</h3>
+								<i>April 13, 2017</i><br />
+							Unde nulla modi cumque laboriosam et delectus hic. Voluptatem cupiditate voluptate cum excepturi dolor voluptates cupiditate in. 
+
+							</div>
+						</div>
+						<div class="brick thumbnail">
+							<img src="http://4.bp.blogspot.com/-d7XXsrjg4Lw/UZaqESCyjmI/AAAAAAAABK8/fePO3Pn1EQw/s1600/Now-You-Be-Goblins.jpg" />
+							<div class="caption">
+								<h3>GMless Goblin One Shot</h3>
+								<i>April 13, 2017</i><br />
+							Unde nulla modi cumque laboriosam et delectus hic. Voluptatem cupiditate voluptate cum excepturi dolor voluptates cupiditate in. Quia quaerat ab ex cupiditate labore non quis. 
+
+							</div>
+						</div>
+						<div class="brick thumbnail">
+							<img src="http://rpg.nathanhare.net/images/banners/id-cards2.jpg" />
+							<div class="caption">
+								<h3>Tracking Aspects at the Table</h3>
+								<i>April 13, 2017</i><br />
+							Unde nulla modi cumque laboriosam et delectus hic. Voluptatem cupiditate voluptate cum excepturi dolor voluptates cupiditate in. Quia quaerat ab ex cupiditate labore non quis. 
+
+							</div>
+						</div>
+						<div class="brick thumbnail">
+							<img src="http://images.akamai.steamusercontent.com/ugc/365156556363283217/3570274E13ABBC88423D83362036663A6E356E6B/" />
+							<div class="caption">
+								<h3>Tabletop Simulator Review</h3>
+								<i>April 13, 2017</i><br />
+							Unde nulla modi cumque laboriosam et delectus hic. Voluptatem cupiditate voluptate cum excepturi dolor voluptates cupiditate in. Quia quaerat ab ex cupiditate labore non quis. In molestiae temporibus sit voluptates architecto maiores necessitatibus saepe.
+
+							</div>
+						</div>
+						<div class="brick thumbnail">
+							<img src="http://rpg.nathanhare.net/images/storygen.png" />
+							<div class="caption">
+								<h3>Storygen</h3>
+								<i>April 13, 2017</i><br />
+								Unde nulla modi cumque laboriosam et delectus hic. 
+
+							</div>
+						</div>
+						--->
+
+					</div>
+				</div>
+			</div>
+
+{% endblock %}
