@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+	{% load static %}
 
 			<div class="container-fluid">
 				<div class="row">
@@ -9,23 +10,29 @@
 
 						{% for p in posts %}
 
-						<div class="brick thumbnail">
-							<a href="">
-								<img src="https://img00.deviantart.net/7599/i/2015/246/5/c/_color__masters_of_umdaar__phantom_realms_by_eeren-d987jk8.jpg" />
-							</a>
-							<div class="caption">
-								<a href=""><h3>{{ p.title }}</h3></a>
-								<i>{{ p.published_date }}</i><br />
-								<!---
-								In our Masters of Umdaar game last night, the players created an aspect that is probably the funniest aspect I’ve ever seen in a Fate game. It was Rampaging Dehydrated Sharkman....
-								--->
-								{% for tag in p.tags.all %}
-								<span class="label label-default">{{ tag }}</span>
-								{% endfor %}
+							<div class="brick thumbnail">
+								
+								<a href="{{ p.url }}">
+									<img src="{% static p.static_banner %}" />
+								</a>
+
+								<div class="caption">
+									<a href="{{ p.url }}"><h3>{{ p.title }}</h3></a>
+									<i>{{ p.published_date }}</i><br />
+
+									{% for tag in p.tags.all %}
+										<span class="label label-default">{{ tag }}</span>
+									{% endfor %}
+
+								</div>
+
 							</div>
-						</div>
 
 						{% endfor %}
+
+
+
+
 
 						<!---
 						<div class="brick thumbnail">

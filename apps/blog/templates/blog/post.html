@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% load static %}
+
+	<div class="container post-content">
+		<div class="post-banner" style="background-image: url('{% static post.static_banner %}'); 
+																		background-size: cover;
+																		background-position: center center;
+																		background-repeat: no-repeat;">
+			&nbsp;
+		</div>
+		<div class="row">
+			<div class="col-xs-9">
+					<a href="{{ post.previous_post.url }}" class="pull-right">Previous Post <i class="glyphicon glyphicon-chevron-right"></i></a>
+					<a href="{{ post.next_post.url }}"><i class="glyphicon glyphicon-chevron-left"></i> Next Post</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9">
+				<h1>{{ post.title }}</h1>
+				<p><i>{{ post.published_date }}</i></p>
+				<div class="content">
+					{{ post.html_body|safe }}
+					<br /><br />
+				</div>
+			</div>
+			<div class="col-md-3">
+				{% include "blog/sidebar.html" %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-9">
+					<a href="{{ post.previous_post.url }}" class="pull-right">Previous Post <i class="glyphicon glyphicon-chevron-right"></i></a>
+					<a href="{{ post.next_post.url }}"><i class="glyphicon glyphicon-chevron-left"></i> Next Post</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<hr class="clearfix" />
+
+				<div id="disqus_thread"></div>
+				<script>
+
+					/**
+					*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+					*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+					var disqus_config = function () {
+					this.page.url = https://rpg.nathanhare.net/posts/{{ post.url }};  // Replace PAGE_URL with your page's canonical URL variable
+					this.page.identifier = {{ post.slug }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+					};
+					(function() { // DON'T EDIT BELOW THIS LINE
+					var d = document, s = d.createElement('script');
+					s.src = 'https://rpgstuff.disqus.com/embed.js';
+					s.setAttribute('data-timestamp', +new Date());
+					(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+		</div>												
+	</div>
+
+{% endblock %}

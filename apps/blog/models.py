@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+import os
+import markdown
 
 # Create your models here.
 class Tag(models.Model):
@@ -8,15 +10,46 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+class Image(models.Model):
+    name = models.CharField(max_length=50)
+    file = models.FileField(upload_to="apps/blog/static/blog/images/")
+
+    def filename(self):
+        return os.path.basename(self.file.name)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        super(Image, self).save(*args, **kwargs)
+        filename = self.file.url
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, null=True)
-    body = models.TextField(max_length=5000)
-    tags = models.ManyToManyField(Tag, blank=True, null=True)
-    banner = models.CharField(max_length=2000, blank=True, null=True)
+    body = models.TextField(max_length=20000)
+    tags = models.ManyToManyField(Tag, blank=True)
+    banner = models.ForeignKey(Image, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(User, models.PROTECT)
     edit_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField()
+
+    def html_body(self):
+        return markdown.markdown(self.body)
+
+    def next_post(self):
+        return self.get_next_by_published_date()
+
+    def previous_post(self):
+        return self.get_previous_by_published_date()
+
+    def url(self):
+        return '/posts/' + self.slug
+
+    def static_banner(self):
+        if self.banner is None:
+            return 'blog/images/default.png'
+        return 'blog/images/' + self.banner.filename()
 
     def __str__(self):
         return self.title

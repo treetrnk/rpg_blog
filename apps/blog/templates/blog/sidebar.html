@@ -1,0 +1,57 @@
+{% load static %}
+  <div class="sidebar">
+		<h2>Author</h2>
+
+    <div class="col-md-6 col-sm-4 col-xs-6">
+			<img src="{% static 'blog/images/nathan-hare2.png' %}" class="img-responsive img-circle pull-left" style="padding: 0 10px 10px 0;"/>
+    </div>
+
+    <ul class="social-media-list list-unstyled col-md-6 col-sm-8 col-xs-6">
+			<li>
+				<a href="http://github.com/treetrnk"><i class="fa fa-github"></i> treetrnk</a>
+			</li>
+			<li>
+				<a href="http://twitter.com/@treetrnk"><i class="fa fa-twitter"></i> @treetrnk</a>
+			</li>
+      <li>
+        <a href="/feed.xml"><i class="fa fa-rss"></i> RSS</a>
+      </li>
+      <li>
+      </li>
+    </ul>
+
+    <div class="col-xs-12">
+        <h4>My Projects</h4>
+      <ul>
+        <li>
+          <b><a href="http://www.drivethrurpg.com/product/199567/High-Fantasy-Magic-A-Simple-Magic-System-for-Fate-Core--Accelerated" target="_blank">High Fantasy Magic</a></b>
+        </li>
+        <li>
+          <b><a href="http://www.drivethrurpg.com/product/204660/Fate-NPC-Cards" target="_blank">Fate NPC Cards</a></b>
+        </li>
+        <li>
+          <b><a href="http://www.drivethrurpg.com/product/204653/Fate-PC-Tracker" target="_blank">Fate PC Tracker</a></b>
+        </li>
+        <li>
+          <a href="http://www.drivethrurpg.com/browse/pub/10796/Nathan-Hare" target="_blank">DriveThruRPG Publisher Page</a>
+        </li>
+      </ul>
+
+      <p class="blog-description">You have found the blog of Nathan Hare. Here you'll find my musings on various topics such as Tabletop RPGs (specifically Fate Core) and my web development projects. The other pages on this site are resources to be used along with tabletop RPGs. Thanks for reading, and let me know what you think! </p>
+    </div>
+
+    <div class="col-xs-12">
+      <form style="padding:3px;text-align:center;" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+        <div class="input-group">
+          <hr style="margin: 7px 0 7px 0" />
+          <input type="email" class="form-control" placeholder="Email Address" name="email" />
+          <button type="submit" class="btn btn-primary" style="margin-top:5px;">Subscribe</button>
+          <input type="hidden" value="RpgStuffBlog" name="uri"/>
+          <input type="hidden" name="loc" value="en_US"/>
+          <hr style="margin: 7px 0 7px 0" />
+        </div>
+      </form>
+    </div>
+
+  </div>
+

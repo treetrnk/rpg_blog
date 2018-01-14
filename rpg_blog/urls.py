@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('apps.blog.urls')),
+    url(r'^about/', views.about, name="about"),
+    url('', include('apps.blog.urls')),
 ]
