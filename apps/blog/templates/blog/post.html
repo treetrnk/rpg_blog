@@ -11,15 +11,13 @@
 			&nbsp;
 		</div>
 		<div class="row">
-			<div class="col-xs-9">
-					<a href="{{ post.previous_post.url }}" class="pull-right">Previous Post <i class="glyphicon glyphicon-chevron-right"></i></a>
-					<a href="{{ post.next_post.url }}"><i class="glyphicon glyphicon-chevron-left"></i> Next Post</a>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-md-9">
 				<h1>{{ post.title }}</h1>
 				<p><i>{{ post.published_date }}</i></p>
+				<p>
+					<a href="{{ post.previous_post.url }}" class="pull-right">Older Post <i class="glyphicon glyphicon-chevron-right"></i></a>
+					<a href="{{ post.next_post.url }}"><i class="glyphicon glyphicon-chevron-left"></i> Newer Post</a>
+				</p>
 				<div class="content">
 					{{ post.html_body|safe }}
 					<br /><br />
@@ -31,8 +29,8 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-9">
-					<a href="{{ post.previous_post.url }}" class="pull-right">Previous Post <i class="glyphicon glyphicon-chevron-right"></i></a>
-					<a href="{{ post.next_post.url }}"><i class="glyphicon glyphicon-chevron-left"></i> Next Post</a>
+					<a href="{{ post.previous_post.url }}" class="pull-right">Older Post <i class="glyphicon glyphicon-chevron-right"></i></a>
+					<a href="{{ post.next_post.url }}"><i class="glyphicon glyphicon-chevron-left"></i> Newer Post</a>
 			</div>
 		</div>
 		<div class="row">

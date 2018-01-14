@@ -19,7 +19,7 @@
 		<style>
 			body {
 				font-family: "Open Sans", sans-serif;
-				background: #eee;
+				background: #ddd;
 				color: #333;
 				margin-top: 50px;
 			}
@@ -28,14 +28,21 @@
 			}
 			header {
 				width: 100%;
-				height: 50px;
 				box-shadow: 0px 3px 10px rgba(0,0,0,0.5);
 				line-height: 50px;
-				background: #6300a0;
+				/*
+				height: 50px;
+				background: #6300a0; //purple
+				background: #00bc4b; //green
+				*/
+				background: #222;
 				color: #fff;
 				z-index: 10;
 				position: fixed;
 				top: 0;
+			}
+			header h3 .fa {
+				color: #6300a0;
 			}
 			header h3 {
 				margin: 0;
@@ -53,15 +60,41 @@
 			{
 				color: #fff;
 			}
-			header nav {
-				display: inline-block;
+			header button.navbar-toggle span.icon-bar {
+				color: #fff;
+				background: #fff;
 			}
+			header ul.navbar-nav {
+				margin-left: 10px !important;
+			}
+			header .nav a:hover,
+			header .nav .open > a,
+			header .nav .open > a:hover,
+			header .nav .open > a:focus {
+				background: #555;
+			}
+			header ul li ul.dropdown-menu {
+				background: #333;
+			}
+			header ul li ul.dropdown-menu li a:hover {
+				color: #fff;
+			}
+			/*
+			header ul li ul li a {
+				color: #333 !important;
+			}
+			*/
+			/*
 			header nav a {
 				margin-left: 15px;
 			}
+			*/
 			.post-content {
 				background: #fff;
-				box-shadow: 0px 3px 10px #666;
+				box-shadow: 0px 3px 10px rgba(0,0,0,0.5);
+				/*
+				color: #000;
+				*/
 				z-index: 5;
 
 			}
@@ -71,18 +104,19 @@
 			}
 			.post-banner {
 				width: 100%;
-				height: 45vh;
+				height: 55vh;
 				min-height: 200px;
 			}
 			.brick {
+				background: #fff;
 				position: absolute;
 				/*
 				background: #ccc;
-				padding: 20px;
 				border: 1px solid #000;
+				padding: 20px;
 				*/
-				width: 300px;
-				box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+				width: 425px;
+				box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
 				-webkit-transition: all 1s ease-in-out;
     		-moz-transition: all 1s ease-in-out;
     		-o-transition: all 1s ease-in-out;
@@ -101,19 +135,48 @@
 
 		<header>
 			<div class="container-fluid">
-				<h3>
-					<a href="/">
-						<i class="fa fa-plus-square"></i> 
-						<i class="fa fa-square"></i> 
-						rpg stuff 
-						<i class="fa fa-minus-square"></i>
-						<i class="fa fa-plus-square"></i>
-					</a>
-				</h3>
-				<nav>
-					<a href="">Tools</a>
-					<a href="">Projects</a>
-					<a href="/about/">About</a>
+
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-links" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<h3>
+						<a href="/">
+							<i class="fa fa-plus-square"></i> 
+							<i class="fa fa-square"></i> 
+							rpg stuff 
+							<i class="fa fa-minus-square"></i>
+							<i class="fa fa-plus-square"></i>
+						</a>
+					</h3>
+				</div>
+
+				<nav class="collapse navbar-collapse" id="navbar-links">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/mastersofumdaar/"><i class="fa fa-star"></i> Umdaar Character Generator</a></li>
+								<li><a href="/storygen/"><i class="fa fa-book"></i> Storygen</a></li>
+								<li><a href="/fate-charsheet/"><i class="fa fa-id-card"></i> Fate Core Charsheet</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="http://www.drivethrurpg.com/product/199567/High-Fantasy-Magic-A-Simple-Magic-System-for-Fate-Core--Accelerated" target="_blank"><i class="fa fa-magic"></i> High Fantasy Magic</a></li>
+								<li><a href="http://www.drivethrurpg.com/product/204660/Fate-NPC-Cards" target="_blank"><i class="fa fa-users"></i> Fate NPC Cards</a></li>
+								<li><a href="http://www.drivethrurpg.com/product/204653/Fate-PC-Tracker" target="_blank"><i class="fa fa-list"></i> Fate PC Tracker</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="http://www.drivethrurpg.com/browse/pub/10796/Nathan-Hare" target="_blank"><i class="fa fa-user-circle"></i> DriveThruRPG Publisher Page</a></li>
+							</ul>
+						</li>
+						<li><a href="/about/">About</a></li>
+					</ul>
+					
 				</nav>
 			</div>
 		</header>
@@ -133,10 +196,11 @@
 		</footer>
 
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>	
+		<script src="https://getbootstrap.com/docs/3.3/dist/js/bootstrap.min.js"></script>
 		<script>
 			var colCount = 0;
 			var colWidth = 0;
-			var defaultColWidth = 300;
+			var defaultColWidth = 0;
 			var margin = 20;
 			var windowWidth = 0;
 			var blocks = [];
@@ -186,6 +250,8 @@
 			};
 
 			$(document).ready(function () {
+
+				defaultColWidth = $('.brick').width() + margin/2;
 			
 				setupBlocks();
 
