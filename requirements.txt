@@ -1,0 +1,5 @@
+# Requirements for rpg_blog
+
+Django
+Markdown
+gunicorn

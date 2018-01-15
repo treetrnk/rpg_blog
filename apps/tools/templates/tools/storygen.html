@@ -24,6 +24,7 @@
 				background-repeat: no-repeat;
 				background-size: cover;
 				background-position: center center;
+				background-attachment: fixed;
 				height: 100vh;
 				font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
 				color: #4c3722;
@@ -91,9 +92,6 @@
 				-moz-appearance:textfield;
 			}
 			.footer {
-				max-width: 600px;
-				margin-left: auto;
-				margin-right: auto;
 				text-align: center;
 				font-size: 10pt;
 				color: #222;
@@ -183,6 +181,7 @@
     
 
 		<a href="/" class="pull-left btn btn-primary" style="margin-left: 15px;"><i class="glyphicon glyphicon-chevron-left"></i> Back to rpg.nathanhare.net</a>
+		<div class="container">
     <div class="story">
       <h1>Let's tell a story...</h1>
       <div id="help-text">
@@ -224,51 +223,56 @@
 			</div>
       <br /><br />
       
-      <div id="allDice">
-        <img class="dice" src="" />
-      </div>
+			<div class="row">
+				<div class="col-xs-12" id="allDice">
+					<img class="dice" src="" />
+				</div>
+			</div>
 
     </div>
     <br /><br />
 
 
-    <div class="footer">
-      This website uses icons available at 
-      <a href="http://game-icons.net" target="_blank">Game-Icons.net</a>.
-      The icons were made by: 
-      <a href="http://lorcblog.blogspot.com" target="_blank">
-       Lorc</a>,
-      <a href="http://delapouite.com" target="_blank">
-        Delapouite</a>,
-      <a href="http://ninmunanmu.com" target="_blank">
-        John Colburn</a>,
-      <a href="http://blackdogofdoom.blogspot.co.uk" target="_blank">
-        Felbrigg</a>,
-      <a href="http://www.uniquedicetowers.com" target="_blank">
-        John Redman</a>,
-      <a href="https://twitter.com/unstoppableCarl" target="_blank">
-        Carl Olsen</a>,
-      <a href="http://opengameart.org/content/95-game-icons" target="_blank">
-        sbed</a>,
-      <a href="http://forum.game-icons.net" target="_blank">
-        PriorBlue</a>,
-      <a href="http://wjbstories.blogspot.com" target="_blank">
-        Willdabeast</a>,
-      <a href="http://viscious-speed.deviantart.com" target="_blank">
-        Viscious Speed</a>,
-      <a href="http://berandas.deviantart.com" target="_blank">
-        Lord Berandas</a>,
-      <a href="http://ecesisllc.wix.com/home" target="_blank">
-        Irongamer</a>,
-      <a href="http://www.gnomosygoblins.blogspot.com" target="_blank">
-        HeavenlyDog</a>,
-      <a href="http://forum.game-icons.net" target="_blank">
-        Lucas</a>,
-      <a href="http://www.faithtoken.com" target="_blank">
-        Faithtoken</a>, and
-      <a href="https://commons.wikimedia.org" target="_blank">
-        Various artists</a>.
-    </div> 
+		<div class="row">
+			<div class="footer col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+				This website uses icons available at 
+				<a href="http://game-icons.net" target="_blank">Game-Icons.net</a>.
+				The icons were made by: 
+				<a href="http://lorcblog.blogspot.com" target="_blank">
+				 Lorc</a>,
+				<a href="http://delapouite.com" target="_blank">
+					Delapouite</a>,
+				<a href="http://ninmunanmu.com" target="_blank">
+					John Colburn</a>,
+				<a href="http://blackdogofdoom.blogspot.co.uk" target="_blank">
+					Felbrigg</a>,
+				<a href="http://www.uniquedicetowers.com" target="_blank">
+					John Redman</a>,
+				<a href="https://twitter.com/unstoppableCarl" target="_blank">
+					Carl Olsen</a>,
+				<a href="http://opengameart.org/content/95-game-icons" target="_blank">
+					sbed</a>,
+				<a href="http://forum.game-icons.net" target="_blank">
+					PriorBlue</a>,
+				<a href="http://wjbstories.blogspot.com" target="_blank">
+					Willdabeast</a>,
+				<a href="http://viscious-speed.deviantart.com" target="_blank">
+					Viscious Speed</a>,
+				<a href="http://berandas.deviantart.com" target="_blank">
+					Lord Berandas</a>,
+				<a href="http://ecesisllc.wix.com/home" target="_blank">
+					Irongamer</a>,
+				<a href="http://www.gnomosygoblins.blogspot.com" target="_blank">
+					HeavenlyDog</a>,
+				<a href="http://forum.game-icons.net" target="_blank">
+					Lucas</a>,
+				<a href="http://www.faithtoken.com" target="_blank">
+					Faithtoken</a>, and
+				<a href="https://commons.wikimedia.org" target="_blank">
+					Various artists</a>.
+			</div> 
+		</div> 
+		</div> 
 
 		<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="https://use.fontawesome.com/5c75cade5f.js"></script>
