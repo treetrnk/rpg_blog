@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="eng">
+{% load static %}
+	<head>
+		<title>Masters of Umdaar Character Generator - rpg.nathanhare.net</title>
+		<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Masters of Umdaar Character Generator" />
+		<meta property="og:image" content="{% static 'tools/images/umdaar/title.png" />
+    <meta property="og:description" content="Generate player characters for the fantastic Fate World of Adventure, Masters of Umdaar!">
+    <meta property="og:url" content="https://rpg.nathanhare.net/mastersofumdaar/">
+    <meta name="twitter:card" content="summary_large_image">
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <!---<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" media="screen">--->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800|Open+Sans" rel="stylesheet">
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+		<style>
+
+			html, body {
+				margin: 0;
+				padding: 0;
+				font-family: "Open Sans", sans-serif;
+        /*
+        margin-bottom: 175px;
+        */
+			}
+			body {
+        background: #6c00b5/*#7251a1*/;
+				color: #ffffff;
+			}
+			h1, h2, h3, h4, h5, h6 {
+				font-family: "Montserrat", sans-serif;
+				font-weight: 800;
+				text-transform: uppercase;
+			}
+			header h5 {
+				margin-top: 0;
+				padding-top: 0;
+				margin-bottom: 20px;
+				text-shadow: 2px 2px 5px #222;
+			}
+			.panel-default {
+				background-color: rgba(255,255,255,0.8);
+				height: 100%;
+				color: #222222;
+				box-shadow: 3px 3px 10px #222;
+			}
+			span.result, #bioTopApproach, #approachResult {
+				font-family: "Montserrat", sans-serif;
+				font-size: 20px;
+				margin-top: 3px;
+			}
+      #background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -20;
+      }
+      .back-link a {
+        font-size: 15px;
+        line-height: 50px;
+        color: #ffffff;
+        text-shadow: 2px 2px 3px #000000;
+        white-space: nowrap;
+      }
+      .full-size {
+        font-size: 18px;
+        line-height: 135px;
+      }
+      footer {
+        color: #ffffff;
+        text-shadow: 2px 2px 3px #000000;
+        margin: 20px 0;
+        /*
+        position: fixed;
+        bottom: 0px;
+        z-index: -1;
+        */
+        width: 100%;
+        font-size: 13px;
+      }
+      footer a, footer a:hover, footer a:active, footer a:visited, footer a:link {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+		</style>
+	</head>
+	<body>
+
+    <div id="background"></div>
+
+		<header class="text-center">
+			<div class="container-fluid">
+				<div class="row">
+          <div class="col-sm-2 back-link full-size hidden-xs">
+            <a href="/"><i class="glyphicon glyphicon-chevron-left"></i> Back to rpg.nathanhare.net</a>
+          </div>
+          <div class="col-sm-2 back-link hidden-sm hidden-md hidden-lg">
+            <a href="/"><i class="glyphicon glyphicon-chevron-left"></i> Back to rpg.nathanhare.net</a>
+          </div>
+					<div class="col-sm-8">
+            <a href="">
+							<img src="{% static 'tools/images/umdaar/title.png' %}" width="200" />
+            </a>
+						<h5>Character Generator</h5>
+					</div>
+					<div class="col-sm-2">
+						<div class="hidden-xs hidden-sm full-size" style="height: 50px;">&nbsp;</div>
+						<button class="btn btn-default hidden-print" id="genAll"><i class="glyphicon glyphicon-refresh"></i> All</button>
+            <div>&nbsp;</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h3 class="text-center">Bioform</h3>
+								<hr />
+
+								<div class="row">
+									<div class="col-md-5 hidden-print">
+										<button class="btn btn-primary" type="button" id="bioform"><i class="glyphicon glyphicon-refresh"></i> Bioform</button>
+									</div>
+									<div class="col-md-7">
+										<span class="result" id="bioformResult"></span>
+										<p class="description"></p>
+									</div>
+								</div>
+								<hr class="hidden-print"/>
+								<div class="row">
+									<div class="col-md-5 hidden-print">
+										<button class="btn btn-primary" type="button" id="kingdom"><i class="glyphicon glyphicon-refresh"></i> Kingdom</button>
+									</div>
+									<div class="col-md-7">
+										<p class="description" id="kingdomResult"></p>
+									</div>
+								</div>
+								<hr class="hidden-print"/>
+								<div class="row">
+									<div class="col-md-5 hidden-print">
+										<button class="btn btn-primary" type="button" id="invertebrate"><i class="glyphicon glyphicon-refresh"></i> Invertebrates</button>
+									</div>
+									<div class="col-md-7">
+										<p id="invertebrateResult"></p>
+									</div>
+								</div>
+								<br />
+								<div class="row">
+									<div class="col-md-5 hidden-print">
+										<button class="btn btn-primary" type="button" id="reptile"><i class="glyphicon glyphicon-refresh"></i> Cold-blooded</button>
+									</div>
+									<div class="col-md-7">
+										<p id="reptileResult"></p>
+									</div>
+								</div>
+								<br />
+								<div class="row">
+									<div class="col-md-5 hidden-print">
+										<button class="btn btn-primary" type="button" id="bird"><i class="glyphicon glyphicon-refresh"></i> Warm-blooded</button>
+									</div>
+									<div class="col-md-7">
+										<p id="birdResult"></p>
+									</div>
+								</div>
+								<hr />
+								<div class="row">
+									<div class="col-xs-6 text-right">
+										<h4>Top Approach:</h4>
+									</div>
+									<div class="col-xs-6" id="bioTopApproach">
+
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h3 class="text-center">Approaches</h3>
+								<hr />
+								<div class="row">
+									<div class="col-xs-12 hidden-print">
+										<label class="control-label">Top Approach</label>
+										<select class="form-control" name="topApproach" id="topApproach">
+											<option value="">- Any -</option>
+											<option value="Careful">Careful</option>
+											<option value="Clever">Clever</option>
+											<option value="Flashy">Flashy</option>
+											<option value="Forceful">Forceful</option>
+											<option value="Quick">Quick</option>
+											<option value="Sneaky">Sneaky</option>
+										</select>
+										<br />
+										<button class="btn btn-primary" type="button" id="approach"><i class="glyphicon glyphicon-refresh"></i> Approaches</button>
+									</div>
+								</div>
+								<br />
+								<br />
+								<div class="row">
+									<div class="col-md-12 text-center" id="approachResult">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h3 class="text-center">Stunts</h3>
+								<hr />
+
+								<div class="row">
+									<div class="col-md-4 hidden-print">
+										<button class="btn btn-primary" type="button" id="power"><i class="glyphicon glyphicon-refresh"></i> Power</button>
+									</div>
+									<div class="col-md-8">
+										<span class="result" id="powerResult"></span>
+										<p class="description"></p>
+									</div>
+								</div>
+								<br />
+								<div class="row">
+									<div class="col-md-4 hidden-print">
+										<button class="btn btn-primary" type="button" id="weapon"><i class="glyphicon glyphicon-refresh"></i> Weapon</button>
+									</div>
+									<div class="col-md-8">
+										<span class="result" id="weaponResult"></span>
+										<p class="description"></p>
+									</div>
+								</div>
+								<br />
+								<div class="row">
+									<div class="col-md-4 hidden-print">
+										<button class="btn btn-primary" type="button" id="adaptation"><i class="glyphicon glyphicon-refresh"></i> Adaptation</button>
+									</div>
+									<div class="col-md-8">
+										<span class="result" id="adaptationResult"></span>
+										<p class="description"></p>
+									</div>
+								</div>
+								<br />
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <a href="https://www.evilhat.com/home/fate-worlds-volume-three-worlds-rise-up/" target="_blank">Masters of Umdaar</a> is Copyright &copy; <a href="https://evilhat.com" target="_blank">Evil Hat Productions</a>.<br />
+            All content on this webpage is used without permission.<br />
+            Art by <a href="https://twitter.com/taziobettin" target="_blank">Tazio Bettin</a> & <a href="https://twitter.com/ErenAngiolini" target="_blank">Enrica Eren Angiolini</a>; used without permission.<br />
+            nathanhare.net has no affiliation with Evil Hat Productions.
+          </div>
+        </div>
+      </div>
+		</footer>
+
+	</body>
+	<script src="{% static '/tools/js/umdaar/bioform.js' %}"></script>
+	<script src="{% static '/tools/js/umdaar/kingdom.js' %}"></script>
+	<script src="{% static '/tools/js/umdaar/invertebrate.js' %}"></script>
+	<script src="{% static '/tools/js/umdaar/reptile.js' %}"></script>
+	<script src="{% static '/tools/js/umdaar/bird.js' %}"></script>
+	<script src="{% static '/tools/js/umdaar/weapon.js' %}"></script>
+	<script src="{% static '/tools/js/umdaar/power.js' %}"></script>
+	<script src="{% static '/tools/js/umdaar/adaptation.js' %}"></script>
+  <!--<script src="https://use.fontawesome.com/0dabb168cf.js"></script>--->
+	<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static '/js/bootstrap.min.js' %}"></script>
+	<script>
+		$(function () {
+
+      var bgNum = Math.floor(Math.random() * 6) + 1;
+      $('#background').hide();
+      setTimeout(function() {
+        $("#background").css('background', 'url(/static/tools/images/umdaar/bg' + bgNum  + '.png) no-repeat center center fixed').fadeIn(3000);
+        $("#background").css('background-size', 'cover');
+      }, 1000);
+
+			$("#genAll").click(function() {
+				randomBioform();
+				randomApproaches();
+				randomWeapon();
+				randomPower();
+				randomAdaptation();
+			});
+
+			$("#bioform").click(function() {
+				randomBioform();
+			});
+
+			$("#kingdom").click(function() {
+				$('#bioTopApproach').html('');
+				randomKingdom();
+			});
+
+			$("#invertebrate").click(function() {
+				$('#bioTopApproach').html('');
+				randomKDM["invertebrate"]();
+			});
+
+			$("#reptile").click(function() {
+				$('#bioTopApproach').html('');
+				randomKDM["reptile"]();
+			});
+
+			$("#bird").click(function() {
+				$('#bioTopApproach').html('');
+				randomKDM["bird"]();
+			});
+
+			$("#approach").click(function() {
+				randomApproaches();
+			});
+
+			$("#weapon").click(function() {
+				randomWeapon();
+			});
+
+			$("#power").click(function() {
+				randomPower();
+			});
+
+			$("#adaptation").click(function() {
+				randomAdaptation();
+			});
+
+		  $('[data-toggle="tooltip"]').tooltip()
+		});
+
+		function loadWheel(element) {
+			setTimeout(function (element) {
+				$(element).html('<i class="fa fa-spinner fa-3x fa-fw"></i>');
+			}, 500);
+			return true;
+		}
+
+		function randomBioform(amount=1) {
+			loadWheel('#bioformResult');
+			var data = bioforms;
+			var bioform = data[Math.floor(Math.random() * data.length)];
+			var approach = bioform.approach.length ? ' (' + bioform.approach + ')' : '';
+			$('#bioformResult').text(bioform.name);
+			$('#bioformResult').next('p.description').text(bioform.description + approach);
+			$('#bioTopApproach').html(bioform.approach);
+			$('#topApproach').val(bioform.approach);
+			randomKingdom(bioform.extraRolls);
+			return true;
+		}
+
+		function addTopApproach(approach) {
+			var comma = $('#bioTopApproach').text().length ? ', ' : '';
+			$('#bioTopApproach').append(comma + approach);
+			$('#topApproach').val(approach);
+		}
+
+		var randomKDM = {
+			invertebrate: function(amount=1) {
+				var data = invertebrates;
+				$('#invertebrateResult').text('');
+				for(amount; amount > 0; amount--) {
+					var invert = data[Math.floor(Math.random() * data.length)];
+					$('#invertebrateResult').append('- <b>' + invert.name + "</b> (" + invert.approach + ")<br />");
+					addTopApproach(invert.approach);
+				}
+				return true;
+			},
+			reptile: function(amount=1) {
+				var data = reptiles;
+				$('#reptileResult').text('');
+				for(amount; amount > 0; amount--) {
+					var reptile = data[Math.floor(Math.random() * data.length)];
+					$('#reptileResult').append('- <b>' + reptile.name + "</b> (" + reptile.approach + ")<br />");
+					addTopApproach(reptile.approach);
+
+				}
+				return true;
+			},
+			bird: function(amount=1) {
+				var data = birds;
+				$('#birdResult').text('');
+				for(amount; amount > 0; amount--) {
+					var bird = data[Math.floor(Math.random() * data.length)];
+					$('#birdResult').append('- <b>' + bird.name + "</b> (" + bird.approach + ")<br />");
+					addTopApproach(bird.approach);
+
+				}
+				return true;
+			}
+		}
+
+		function randomKingdom(amount=1) {
+			$('#kingdomResult').text('');
+			var data = kingdoms;
+			if (amount) {
+				var kingdomOcc = {
+					invertebrate: 0,
+					reptile: 0,
+					bird: 0
+				};
+				for(amount; amount > 0; amount--) {
+					var kingdom = data[Math.floor(Math.random() * data.length)];
+					$('#kingdomResult').append('- ' + kingdom.name + "<br />");
+					kingdomOcc[kingdom.variable]++;
+				}
+				for (var i in kingdomOcc) {
+					//console.log("Calling " + i);
+					//randomKDM[i](kingdomOcc[i]);
+					randomKDM[i](kingdomOcc[i]);
+				}
+			}
+			return true;
+		}
+
+		function randomApproaches() {
+			var topApproach = $('#topApproach').val();
+			//console.log(topApproach);
+			var approachList = [
+				"Careful",
+				"Clever",
+				"Flashy",
+				"Forceful",
+				"Quick",
+				"Sneaky"
+			];
+			var scores = [
+				"+2",
+				"+2",
+				"+1",
+				"+1",
+				"+0"
+			];
+			if (!topApproach.length) { 
+				scores.push("+3");
+			}
+			var approaches = {};
+			for (i in approachList) {
+				if (approachList[i] == topApproach) {
+					approaches[approachList[i]] = "+3";
+				} else {
+					var rand = Math.floor(Math.random() * scores.length);
+					approaches[approachList[i]] = scores[rand];
+					scores.splice(rand, 1);
+				}
+			}
+			//console.log(approaches);
+			$('#approachResult').html('');
+			for (i in approaches) {
+				$('#approachResult').append('<b>' + i + ':</b> ' + approaches[i] + '<br />');
+			}
+		}
+
+		function randomWeapon(amount=1) {
+			var data = weapons;
+			var weapon = data[Math.floor(Math.random() * data.length)];
+			$('#weaponResult').text(weapon.name + ' (' + weapon.approach + ')');
+			$('#weaponResult').next('p.description').html(weapon.description);
+			return true;
+		}
+
+		function randomPower(amount=1) {
+			var data = powers;
+			var power = data[Math.floor(Math.random() * data.length)];
+			$('#powerResult').text(power.name + ' (' + power.approach + ')');
+			$('#powerResult').next('p.description').html(power.description);
+			return true;
+		}
+
+		function randomAdaptation(amount=1) {
+			var data = adaptations;
+			var adaptation = data[Math.floor(Math.random() * data.length)];
+			$('#adaptationResult').text(adaptation.name + ' (' + adaptation.approach + ')');
+			$('#adaptationResult').next('p.description').html(adaptation.description);
+			return true;
+		}
+
+	</script>
+	</script>
+	</script>
+</html>
