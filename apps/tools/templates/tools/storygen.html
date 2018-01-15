@@ -9,47 +9,139 @@
 
     <!---<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>--->
     <!---<script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>--->
-		<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 		<!--
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
     <script src="js/jquery-ui.min.js"></script>
-		-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-	<script type="text/javascript" src="{% static 'tools/js/sortable.js' %}"></script>
-    <script src="https://use.fontawesome.com/5c75cade5f.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' 
+		-->
+    <link href='https://fonts.googleapis.com/css?family=Lobster|Roboto' 
       rel='stylesheet' type='text/css'>
     
-		<script src="{% static 'tools/js/storygen.js' %}"></script>
 		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="{% static 'tools/css/storygen.css' %}" />
-    <script>
-      
-      /*  UNCOMMENT FOR DRAG AND DROP
-            drag and drob and clicking don't work well together currently
-      $(function() {
-        $( "#sortable" ).sortable();
-        $( "#sortable" ).disableSelection();
-      });
-      */
+		<style>
+			html,body {
+				background: url(https://static.pexels.com/photos/317355/pexels-photo-317355.jpeg);
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center center;
+				height: 100vh;
+				font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+				color: #4c3722;
+				font-family: "Roboto", sans-serif;
+				font-size: 125%;
+			}
+			body {
+				padding-top: 50px;
+			}
+			h1,h2,h3,h4,h5,h6 {
+				font-family: "Lobster", cursive;
+				text-shadow: 3px 3px 5px #d4c7ba;
+			}
+			h1 {
+				font-size: 60px;
+			}
+			.story {
+				max-width: 800px;
+				min-width: 300px;
+				margin-left: auto;
+				margin-right: auto;
+				text-align: center;
+				text-shadow: 3px 3px 5px #d4c7ba;
+			}
 
+			#help {
+				background: #999;
+				color: #fff;
+				font-weight: bold;
+				text-align: center;
+				cursor: pointer;
+				border-radius: 100px;
+				width: 25px;
+				line-height: 25px;
+				font-size: 12pt;
+				margin-left: auto;
+				margin-right: auto;
+				display: inline-block;
+			}
+
+			#help-text {
+				display: none;
+				max-width:250px;
+				margin-right:auto;
+				margin-left:auto;
+				font-size:10pt;
+				text-align: left;
+				background: #fff;
+				border-radius: 5px;
+				padding: 5px;
+				border-left: 2px solid #aaa;
+				border-top: 2px solid #aaa;
+				border-right: 2px solid #ddd;
+				border-bottom: 2px solid #ddd;
+				transition-property: all;
+				transition-duration: .5s;
+				transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+			}
+			input[type=number]::-webkit-inner-spin-button,
+			input[type=number]::-webkit-outer-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+			input[type=number] {
+				-moz-appearance:textfield;
+			}
+			.footer {
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+				text-align: center;
+				font-size: 10pt;
+				color: #222;
+				background: linear-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0.35));
+				border-radius: 10px;
+				padding: 15px;
+			}
+
+			.story h1 {
+				line-height: 30px;
+				display: inline-block;
+			}
+			.icon {
+				width: 75px;
+				border: 3px solid #000;
+				border-radius: 5px;
+				cursor: pointer;
+				margin: 2px;
+				-webkit-transition: all 1s ease-in-out;
+    		-moz-transition: all 1s ease-in-out;
+    		-o-transition: all 1s ease-in-out;
+    		-ms-transition: all 1s ease-in-out;
+    		transition: all 1s ease-in-out;
+			}
+			a {
+				color: #012391;
+			}
+	
 			/*
-      $(function() {
-        $('#header').load('../header.html');
-      });
+			input[type="text"] {
+				background: #fff;
+				border: 2px solid #333;
+				padding: 5px;
+				text-align: center;
+				border-radius: 5px;
+			}
+
+			input[type="button"], input[type="submit"] {
+				background: #333;
+				color: #aaa;
+				border-radius: 100px;
+				border: 0px;
+				font-weight: bold;
+				padding: 5px 7px 5px 7px;
+				cursor: pointer;
+			} 
 			*/
-
-      (function() {
-        var cx = '007454831596437075580:jo-c4rwlx1i';
-        var gcse = document.createElement('script');
-        gcse.type = 'text/javascript';
-        gcse.async = true;
-        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(gcse, s);
-      })();
-
-    </script>
+		</style>
   </head>
   <body ng-controller="storygenCon as sg">
 
@@ -92,9 +184,8 @@
 
 		<a href="/" class="pull-left btn btn-primary" style="margin-left: 15px;"><i class="glyphicon glyphicon-chevron-left"></i> Back to rpg.nathanhare.net</a>
     <div class="story">
-      <h1>storygen</h1>
-      <p id="help" ng-click="sg.toggleHelp()">?</p>
-      <div id="help-text" ng-hide="sg.help">
+      <h1>Let's tell a story...</h1>
+      <div id="help-text">
         <ul>
           <li>
             Use the randomly generated images below as inspiration for your story.
@@ -106,23 +197,36 @@
             <a href="/rpg/blog/2016/05/27/storygen.html">More information here</a>.
         </ul>
       </div>
+			<!---
 			<h2 class="text-danger">--- Under Construction ---</h2>
+			--->
       <br />
       <br />
-      <form ng-submit="sg.regen('all')">
-        <span class="fa fa-minus-circle" ng-click="sg.minus()" style="font-size:40px;color:#333333;cursor:pointer;"></span>
-        <input type="text" value="{{sg.number}}" size="1" 
-          ng-model="sg.number" style="position: relative;top: -8px;" />
-        <span class="fa fa-plus-circle" ng-click="sg.plus()" style="font-size:40px;color:#333333;cursor:pointer;"></span><br /><br />
-        <input type="submit" value="new story" />
-      </form>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"> 
+					<label class="control-label">Story Dice</label>
+					<div class="input-group">
+						<span class="input-group-btn">
+							<button type="button" id="lessDice" class="btn btn-default btn-lg"><i class="fa fa-minus"></i></button>
+						</span>
+						<input type="text" id="diceNum" value="10" class="form-control input-lg text-center" />
+						<span class="input-group-btn">
+							<button type="button" id="moreDice" class="btn btn-default btn-lg"><i class="fa fa-plus"></i></button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<button id="newStory" class="btn btn-primary btn-lg">new story</button>
+				</div>
+			</div>
       <br /><br />
       
-      <span ng-model="sg.icons" id="sortable">
-        <img ng-repeat="icon in sg.icons" class="icon" src="{{icon.path}}" 
-          style="background: {{icon.color}};" ng-click="sg.regen($index)" 
-          />
-      </span>
+      <div id="allDice">
+        <img class="dice" src="" />
+      </div>
 
     </div>
     <br /><br />
@@ -166,5 +270,107 @@
         Various artists</a>.
     </div> 
 
+		<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="https://use.fontawesome.com/5c75cade5f.js"></script>
+		<!--
+		<script src="{% static 'tools/js/storygen.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tools/js/sortable.js' %}"></script>
+		-->
+    <script>
+			var colors = [
+				"#ffff54",
+				"#8cd446",
+				"#46acd3",
+				"#4264c7",
+				"#8c3fc0",
+				"#e64c8d",
+				"#ff5454",
+				"#ffb554",
+				"#ffb554",
+			];
+
+			var iconPath = '/static/tools/images/storygen/';
+
+			var icons = [
+				{% for icon in icons %}
+					"{{ icon }}",
+				{% endfor %}
+			];
+
+			function clearDice() {
+				$('#allDice').html('');	
+			}
+
+			function rollDice() {
+				var icon = icons[Math.floor(Math.random()*icons.length)];	
+				var color = colors[Math.floor(Math.random()*colors.length)];
+				return {icon: icon, color: color};
+			}
+
+			function rollAllDice() {
+				clearDice();
+				var diceNum = $('#diceNum').val();
+				diceNum = diceNum > 30 ? 30 : diceNum;
+				diceNum = diceNum < 1 ? 1 : diceNum;
+				$('#diceNum').val(diceNum);
+				addDice( $('#diceNum').val() );
+				clickableDice();
+			}
+
+			function addDice(num) {
+				var i=0;
+				while (i < num) {
+					var dieInfo = rollDice();
+					var die = "<img src='" + iconPath + dieInfo.icon + "' style='background-color: " + dieInfo.color + ";' class='icon' />";
+					$('#allDice').append(die);
+					i++;
+				}
+			}
+
+			function clickableDice() {
+				$('.icon').click(function() {
+					var die = rollDice();
+					$(this).attr('src', iconPath + die.icon);
+					$(this).css('background-color', die.color);
+				});
+			}
+
+      (function() {
+        var cx = '007454831596437075580:jo-c4rwlx1i';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+
+			$(document).ready(function() {
+
+				rollAllDice();
+			
+				$('#moreDice').click(function() {
+					var diceNum = $('#diceNum').val();
+					$('#diceNum').val(Number(diceNum)+1);
+					$('#diceNum').change();
+				});
+
+				$('#lessDice').click(function() {
+					var diceNum = $('#diceNum').val();
+					$('#diceNum').val(Number(diceNum)-1);
+					$('#diceNum').change();
+				});
+
+				$('#newStory').click(function() {
+					rollAllDice();
+				});
+
+				$('#diceNum').on('change keyup', function() {
+					rollAllDice();
+				});
+
+			});
+
+    </script>
   </body>
 </html>
