@@ -41,7 +41,15 @@
 				top: 0;
 			}
 			header h3 .fa {
-				color: #6300a0;
+				color: #268fff;
+				/*
+				color: #7f00ca; //purple
+				-webkit-transition: all 1s ease-in-out;
+    		-moz-transition: all 1s ease-in-out;
+    		-o-transition: all 1s ease-in-out;
+    		-ms-transition: all 1s ease-in-out;
+    		transition: all 1s ease-in-out;
+				*/
 			}
 			header h3 {
 				margin: 0 7px;
@@ -128,6 +136,12 @@
 			.thumbnail .caption h3 {
 				margin: 10px 0;
 			}
+			.rotate {
+				-ms-transform: rotate(360deg); /* IE 9 */
+				-webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+				transform: rotate(360deg);
+				transition-duration: 1s;
+			}
 		</style>
 	</head>
 	<body>
@@ -144,9 +158,9 @@
 					</button>
 					<h3>
 						<a href="/">
-							<i class="fa fa-plus-square"></i> 
-							<i class="fa fa-square"></i> 
-							rpg stuff 
+							<i class="fa fa-plus-square"></i>
+							<i class="fa fa-square"></i>
+							rpg stuff
 							<i class="fa fa-minus-square"></i>
 							<i class="fa fa-plus-square"></i>
 						</a>
@@ -177,7 +191,7 @@
 						</li>
 						<li><a href="/about/">About</a></li>
 					</ul>
-					
+
 				</nav>
 			</div>
 		</header>
@@ -196,7 +210,7 @@
 
 		</footer>
 
-		<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>	
+		<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
 		<script src="{% static '/js/bootstrap.min.js' %}"></script>
 		<script>
 			var colCount = 0;
@@ -242,7 +256,7 @@
 						'top':min+'px'
 					});
 					blocks[index] = min+$(this).outerHeight()+margin;
-				});	
+				});
 			}
 
 			// Function to get the Min value in Array
@@ -250,14 +264,39 @@
 					return Math.min.apply(Math, array);
 			};
 
+			function rollHeaderDice() {
+				var diceClasses = [
+					'fa-plus-square',
+					'fa-square',
+					'fa-minus-square'
+				];
+				var diceClassStr = diceClasses.join(" ");
+				$('header .navbar-header h3 i.fa').each(function() {
+					var $this = $(this);
+					$this.addClass('rotate');
+					var newFace = diceClasses[Math.floor(Math.random() * diceClasses.length)];
+					setTimeout(function() {
+						$this.removeClass(diceClassStr);
+						$this.addClass(newFace);
+					}, 300);
+				});
+				setTimeout(function() {
+					$('header .navbar-header h3 i.fa').removeClass('rotate');
+				}, 1001);
+			}
+
 			$(document).ready(function () {
 
+				rollHeaderDice();
+
 				defaultColWidth = $('.brick').width() + margin/2;
-			
+
 				setupBlocks();
 
 				$(window).resize(setupBlocks);
-			
+
+				$('header .navbar-header h3').mouseleave(rollHeaderDice);
+
 			});
 		</script>
 	</body>

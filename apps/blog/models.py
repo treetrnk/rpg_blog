@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import pytz
 import os
 import markdown
 
@@ -44,7 +45,11 @@ class Post(models.Model):
         return self.get_previous_by_published_date()
 
     def url(self):
-        return '/posts/' + self.slug
+        utc = pytz.timezone('UTC')
+        year = str(self.published_date.year)
+        month = str('%02d' % self.published_date.month)
+        day = str('%02d' % self.published_date.day)
+        return '/' + year + '/' + month + '/' + day + '/' + self.slug
 
     def static_banner(self):
         if self.banner is None:

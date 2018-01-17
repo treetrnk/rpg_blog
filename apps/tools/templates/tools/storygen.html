@@ -14,9 +14,9 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 		-->
-    <link href='https://fonts.googleapis.com/css?family=Lobster|Roboto' 
+    <link href='https://fonts.googleapis.com/css?family=Lobster|Roboto'
       rel='stylesheet' type='text/css'>
-    
+
 		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 		<style>
 			html,body {
@@ -106,20 +106,23 @@
 			}
 			.icon {
 				width: 75px;
+				height: 75px;
 				border: 3px solid #000;
 				border-radius: 5px;
 				cursor: pointer;
 				margin: 2px;
-				-webkit-transition: all 1s ease-in-out;
-    		-moz-transition: all 1s ease-in-out;
-    		-o-transition: all 1s ease-in-out;
-    		-ms-transition: all 1s ease-in-out;
-    		transition: all 1s ease-in-out;
+				/*
+				-webkit-transition:	background 1s ease-in;
+    		-moz-transition: background 1s ease-in-out;
+    		-o-transition: background 1s ease-in-out;
+    		-ms-transition: background 1s ease-in-out;
+    		transition: background 1s ease-in-out;
+				*/
 			}
 			a {
 				color: #012391;
 			}
-	
+
 			/*
 			input[type="text"] {
 				background: #fff;
@@ -137,8 +140,14 @@
 				font-weight: bold;
 				padding: 5px 7px 5px 7px;
 				cursor: pointer;
-			} 
+			}
 			*/
+			.rotate {
+				-ms-transform: rotate(360deg); /* IE 9 */
+				-webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+				transform: rotate(360deg);
+				transition-duration: 1s;
+			}
 		</style>
   </head>
   <body ng-controller="storygenCon as sg">
@@ -165,7 +174,7 @@
             <gcse:search></gcse:search>
           </div>
           <div class="text-right navbar-right" style="line-height: 45px;color:#999;">
-            <i class="fa fa-search"></i> 
+            <i class="fa fa-search"></i>
           </div>
 					--->
           <!--
@@ -178,7 +187,7 @@
       </div>
     </nav>
 		--->
-    
+
 
 		<a href="/" class="pull-left btn btn-primary" style="margin-left: 15px;"><i class="glyphicon glyphicon-chevron-left"></i> Back to rpg.nathanhare.net</a>
 		<div class="container">
@@ -202,7 +211,7 @@
       <br />
       <br />
 			<div class="row">
-				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"> 
+				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
 					<label class="control-label">Story Dice</label>
 					<div class="input-group">
 						<span class="input-group-btn">
@@ -222,7 +231,7 @@
 				</div>
 			</div>
       <br /><br />
-      
+
 			<div class="row">
 				<div class="col-xs-12" id="allDice">
 					<img class="dice" src="" />
@@ -235,9 +244,9 @@
 
 		<div class="row">
 			<div class="footer col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-				This website uses icons available at 
+				This website uses icons available at
 				<a href="http://game-icons.net" target="_blank">Game-Icons.net</a>.
-				The icons were made by: 
+				The icons were made by:
 				<a href="http://lorcblog.blogspot.com" target="_blank">
 				 Lorc</a>,
 				<a href="http://delapouite.com" target="_blank">
@@ -270,9 +279,9 @@
 					Faithtoken</a>, and
 				<a href="https://commons.wikimedia.org" target="_blank">
 					Various artists</a>.
-			</div> 
-		</div> 
-		</div> 
+			</div>
+		</div>
+		</div>
 
 		<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="https://use.fontawesome.com/5c75cade5f.js"></script>
@@ -301,12 +310,19 @@
 				{% endfor %}
 			];
 
+			function spinDice(element) {
+				element.addClass('rotate');
+				setTimeout(function() {
+					element.removeClass('rotate');
+				}, 1001);
+			}
+
 			function clearDice() {
-				$('#allDice').html('');	
+				$('#allDice').html('');
 			}
 
 			function rollDice() {
-				var icon = icons[Math.floor(Math.random()*icons.length)];	
+				var icon = icons[Math.floor(Math.random()*icons.length)];
 				var color = colors[Math.floor(Math.random()*colors.length)];
 				return {icon: icon, color: color};
 			}
@@ -325,17 +341,40 @@
 				var i=0;
 				while (i < num) {
 					var dieInfo = rollDice();
-					var die = "<img src='" + iconPath + dieInfo.icon + "' style='background-color: " + dieInfo.color + ";' class='icon' />";
+					var die = "<img src='' style='background-color: " + dieInfo.color + ";' class='icon' />";
 					$('#allDice').append(die);
 					i++;
 				}
+				setTimeout(function() {
+					newStory();
+				}, 100);
+			}
+
+			function newStory() {
+				$('.icon').each(function() {
+					var iconData = rollDice();
+					var $this = $(this);
+					$this.addClass('rotate');
+					setTimeout(function() {
+						$this.attr('src', iconPath + iconData.icon);
+						$this.css('background-color', iconData.color);
+					}, 300);
+					setTimeout(function() {
+						$this.removeClass('rotate');
+					}, 1001);
+				});
 			}
 
 			function clickableDice() {
 				$('.icon').click(function() {
 					var die = rollDice();
+					var $this = $(this);
+					$(this).addClass('rotate');
 					$(this).attr('src', iconPath + die.icon);
 					$(this).css('background-color', die.color);
+					setTimeout(function() {
+						$this.removeClass('rotate');
+					}, 1001);
 				});
 			}
 
@@ -352,7 +391,7 @@
 			$(document).ready(function() {
 
 				rollAllDice();
-			
+
 				$('#moreDice').click(function() {
 					var diceNum = $('#diceNum').val();
 					$('#diceNum').val(Number(diceNum)+1);
@@ -366,7 +405,7 @@
 				});
 
 				$('#newStory').click(function() {
-					rollAllDice();
+					newStory();
 				});
 
 				$('#diceNum').on('change keyup', function() {

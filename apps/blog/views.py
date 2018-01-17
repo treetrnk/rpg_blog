@@ -8,6 +8,9 @@ def index(request):
     # now return the rendered template
     return render(request, 'blog/posts.html', {'posts': posts})
 
-def post(request, slug):
-    post = Post.objects.get(slug=slug)
+def post(request, year, month, day, slug):
+    post = Post.objects.filter(published_date__year=year,
+                                published_date__month=month,
+                                #published_date__day=day,
+                                slug=slug)[0]
     return render(request, 'blog/post.html', {'post': post})

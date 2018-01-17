@@ -44,6 +44,11 @@
 				height: 100%;
 				color: #222222;
 				box-shadow: 3px 3px 10px #222;
+				-webkit-transition: all 1s ease-in-out;
+    		-moz-transition: all 1s ease-in-out;
+    		-o-transition: all 1s ease-in-out;
+    		-ms-transition: all 1s ease-in-out;
+    		transition: all 1s ease-in-out;
 			}
 			span.result, #bioTopApproach, #approachResult {
 				font-family: "Montserrat", sans-serif;
@@ -85,6 +90,12 @@
         color: #ffffff;
         text-decoration: underline;
       }
+			.rotate {
+				-ms-transform: rotate(720deg); /* IE 9 */
+				-webkit-transform: rotate(720deg); /* Chrome, Safari, Opera */
+				transform: rotate(720deg);
+				transition-duration: 1.5s;
+			}
 		</style>
 	</head>
 	<body>
@@ -293,6 +304,7 @@
       }, 1000);
 
 			$("#genAll").click(function() {
+				loadWheel($('#genAll i.glyphicon'));
 				randomBioform();
 				randomApproaches();
 				randomWeapon();
@@ -344,14 +356,18 @@
 		});
 
 		function loadWheel(element) {
-			setTimeout(function (element) {
-				$(element).html('<i class="fa fa-spinner fa-3x fa-fw"></i>');
-			}, 500);
+			$(element).addClass('rotate');
+			setTimeout(function() {
+				$(element).removeClass('rotate');
+			}, 1501);
 			return true;
 		}
 
-		function randomBioform(amount=1) {
-			loadWheel('#bioformResult');
+		function randomBioform(amount) {
+				if (amount === undefined) {
+					amount = 1;
+				}
+			loadWheel($('#bioform i.glyphicon'));
 			var data = bioforms;
 			var bioform = data[Math.floor(Math.random() * data.length)];
 			var approach = bioform.approach.length ? ' (' + bioform.approach + ')' : '';
@@ -370,20 +386,28 @@
 		}
 
 		var randomKDM = {
-			invertebrate: function(amount=1) {
+			invertebrate: function(amount) {
+				if (amount === undefined) {
+					amount = 1;
+				}
 				var data = invertebrates;
 				$('#invertebrateResult').text('');
 				for(amount; amount > 0; amount--) {
+					loadWheel($('#invertebrate i.glyphicon'));
 					var invert = data[Math.floor(Math.random() * data.length)];
 					$('#invertebrateResult').append('- <b>' + invert.name + "</b> (" + invert.approach + ")<br />");
 					addTopApproach(invert.approach);
 				}
 				return true;
 			},
-			reptile: function(amount=1) {
+			reptile: function(amount) {
+				if (amount === undefined) {
+					amount = 1;
+				}
 				var data = reptiles;
 				$('#reptileResult').text('');
 				for(amount; amount > 0; amount--) {
+					loadWheel($('#reptile i.glyphicon'));
 					var reptile = data[Math.floor(Math.random() * data.length)];
 					$('#reptileResult').append('- <b>' + reptile.name + "</b> (" + reptile.approach + ")<br />");
 					addTopApproach(reptile.approach);
@@ -391,10 +415,14 @@
 				}
 				return true;
 			},
-			bird: function(amount=1) {
+			bird: function(amount) {
+				if (amount === undefined) {
+					amount = 1;
+				}
 				var data = birds;
 				$('#birdResult').text('');
 				for(amount; amount > 0; amount--) {
+					loadWheel($('#bird i.glyphicon'));
 					var bird = data[Math.floor(Math.random() * data.length)];
 					$('#birdResult').append('- <b>' + bird.name + "</b> (" + bird.approach + ")<br />");
 					addTopApproach(bird.approach);
@@ -404,7 +432,10 @@
 			}
 		}
 
-		function randomKingdom(amount=1) {
+		function randomKingdom(amount) {
+			if (amount === undefined) {
+				amount = 1;
+			}
 			$('#kingdomResult').text('');
 			var data = kingdoms;
 			if (amount) {
@@ -414,6 +445,7 @@
 					bird: 0
 				};
 				for(amount; amount > 0; amount--) {
+					loadWheel($('#kingdom i.glyphicon'));
 					var kingdom = data[Math.floor(Math.random() * data.length)];
 					$('#kingdomResult').append('- ' + kingdom.name + "<br />");
 					kingdomOcc[kingdom.variable]++;
@@ -445,9 +477,10 @@
 				"+1",
 				"+0"
 			];
-			if (!topApproach.length) { 
+			if (!topApproach.length) {
 				scores.push("+3");
 			}
+			loadWheel($('#approach i.glyphicon'));
 			var approaches = {};
 			for (i in approachList) {
 				if (approachList[i] == topApproach) {
@@ -465,7 +498,11 @@
 			}
 		}
 
-		function randomWeapon(amount=1) {
+		function randomWeapon(amount) {
+			if (amount === undefined) {
+				amount = 1;
+			}
+			loadWheel($('#weapon i.glyphicon'));
 			var data = weapons;
 			var weapon = data[Math.floor(Math.random() * data.length)];
 			$('#weaponResult').text(weapon.name + ' (' + weapon.approach + ')');
@@ -473,7 +510,11 @@
 			return true;
 		}
 
-		function randomPower(amount=1) {
+		function randomPower(amount) {
+			if (amount === undefined) {
+				amount = 1;
+			}
+			loadWheel($('#power i.glyphicon'));
 			var data = powers;
 			var power = data[Math.floor(Math.random() * data.length)];
 			$('#powerResult').text(power.name + ' (' + power.approach + ')');
@@ -481,7 +522,11 @@
 			return true;
 		}
 
-		function randomAdaptation(amount=1) {
+		function randomAdaptation(amount) {
+			if (amount === undefined) {
+				amount = 1;
+			}
+			loadWheel($('#adaptation i.glyphicon'));
 			var data = adaptations;
 			var adaptation = data[Math.floor(Math.random() * data.length)];
 			$('#adaptationResult').text(adaptation.name + ' (' + adaptation.approach + ')');
