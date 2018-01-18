@@ -124,7 +124,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "../../data/rpg_blog/static")
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, '../../data/rpg_blog/media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../../data/rpg_blog/')
 MEDIA_URL = '/media/'
 FILE_UPLOAD_MAX_MEMORY_SIZE = 100000000
 FILE_UPLOAD_PERMISSIONS  = 0o664
