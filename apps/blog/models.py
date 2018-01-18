@@ -52,7 +52,7 @@ class Post(models.Model):
 		day = str('%02d' % self.published_date.day)
 		return '/' + year + '/' + month + '/' + day + '/' + self.slug
 
-	def static_banner(self):
+	def banner_url(self):
 		if self.banner is None:
 			return 'media/default.png'
 		return 'media/' + self.banner.filename()
