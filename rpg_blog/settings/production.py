@@ -7,5 +7,3 @@ ALLOWED_HOSTS = ['www.rpg.nathanhare.net',
 ]
 
 STATIC_ROOT = '/srv/http/rpg_blog/static/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, '../../../data/rpg_blog/media/')
