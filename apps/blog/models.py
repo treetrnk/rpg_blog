@@ -54,7 +54,7 @@ class Post(models.Model):
 
 	def banner_url(self):
 		if self.banner is None:
-			return 'media/default.png'
+			return '/media/default.png'
 		return 'media/' + self.banner.filename()
 
 	def clean_body(self):
