@@ -4,7 +4,7 @@
 	{% load static %}
 
 	<div class="container post-content">
-		<div class="post-banner" style="background-image: url('{% static post.static_banner %}'); 
+		<div class="post-banner" style="background-image: url('{% static post.static_banner %}');
 																		background-size: cover;
 																		background-position: center center;
 																		background-repeat: no-repeat;">
@@ -20,17 +20,20 @@
 				</p>
 				<div class="content">
 					{{ post.html_body|safe }}
-					<br /><br />
+					<br />
+					<i class="fa fa-tags"></i> Tags:
+				{% for tag in post.tags.all %}
+					<span class="label label-default">{{ tag }}</span>
+				{% endfor %}
+					<br />
 				</div>
+				<br />
+				<a href="{{ post.previous_post.url }}" class="pull-right">Older Post <i class="glyphicon glyphicon-chevron-right"></i></a>
+				<a href="{{ post.next_post.url }}"><i class="glyphicon glyphicon-chevron-left"></i> Newer Post</a>
 			</div>
 			<div class="col-md-3">
 				{% include "blog/sidebar.html" %}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-9">
-					<a href="{{ post.previous_post.url }}" class="pull-right">Older Post <i class="glyphicon glyphicon-chevron-right"></i></a>
-					<a href="{{ post.next_post.url }}"><i class="glyphicon glyphicon-chevron-left"></i> Newer Post</a>
+				<hr />
 			</div>
 		</div>
 		<div class="row">
@@ -44,8 +47,8 @@
 					*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 					*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 					var disqus_config = function () {
-					this.page.url = https://rpg.nathanhare.net/posts/{{ post.url }};  // Replace PAGE_URL with your page's canonical URL variable
-					this.page.identifier = {{ post.slug }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+					this.page.url = '{{ BASE_URL }}{{ post.url }}';  // Replace PAGE_URL with your page's canonical URL variable
+					this.page.identifier = '{{ post.slug }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 					};
 					(function() { // DON'T EDIT BELOW THIS LINE
 					var d = document, s = d.createElement('script');
@@ -56,7 +59,7 @@
 				</script>
 				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-		</div>												
+		</div>
 	</div>
 
 {% endblock %}

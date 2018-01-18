@@ -2,15 +2,15 @@
 <html lang="eng">
 	<head>
 		<!---{% load static %}--->
-		<title>RPG Stuff - by: Nathan Hare</title>
+		<title>{{ meta.title }}</title>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta property="og:title" content="rpg stuff" />
-		<meta property="og:image" content="images/title.png" />
-		<meta property="og:description" content="A blog by Nathan Hare about tabletop roleplaying games.">
-		<meta property="og:url" content="http://rpg.nathanhare.net/mou/">
+		<meta property="og:title" content="{{ meta.title }}" />
+		<meta property="og:image" content="{{ meta.image }}" />
+		<meta property="og:description" content="{{ meta.description }}">
+		<meta property="og:url" content="{{ BASE_URL }}{{ request.get_full_path }}">
 		<meta name="twitter:card" content="summary_large_image">
-		<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+		<link rel="shortcut icon" href="{{ meta.favicon }}" type="image/x-icon">
 		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}" media="screen">
 		<link href="https://use.fontawesome.com/5c75cade5f.css" media="all" rel="stylesheet">
