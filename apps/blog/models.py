@@ -55,7 +55,7 @@ class Post(models.Model):
 	def banner_url(self):
 		if self.banner is None:
 			return '/media/default.png'
-		return 'media/' + self.banner.filename()
+		return '/media/' + self.banner.filename()
 
 	def clean_body(self):
 		pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})'
