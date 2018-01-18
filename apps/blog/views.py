@@ -21,7 +21,7 @@ def post(request, year, month, day, slug):
 		slug=slug)[0]
 	meta = {
 		'title': post.title + ' - rpg stuff',
-		'image': '/static/' + str(post.static_banner),
+		'image': str(post.banner_url),
 		'favicon': '/static/images/favicon.png',
 		'description': post.clean_body()[0:120] + '...',
 	}
