@@ -14,7 +14,7 @@ class Tag(models.Model):
 
 class Image(models.Model):
 	name = models.CharField(max_length=50)
-	file = models.ImageField(upload_to='media/')
+	file = models.ImageField()
 
 	def filename(self):
 		return os.path.basename(self.file.name)
