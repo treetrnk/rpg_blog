@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	{% load static %}
 
 			<div class="container-fluid">
 				<div class="row">
@@ -13,7 +12,7 @@
 							<div class="brick thumbnail">
 
 								<a href="{{ p.url }}">
-									<img src="{% static p.static_banner %}" />
+									<img src="{{ p.static_banner }}" />
 								</a>
 
 								<div class="caption">

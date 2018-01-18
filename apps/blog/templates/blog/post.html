@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	{% load static %}
 
 	<div class="container post-content">
-		<div class="post-banner" style="background-image: url('{% static post.static_banner %}');
+		<div class="post-banner" style="background-image: url('{{ post.static_banner }}');
 																		background-size: cover;
 																		background-position: center center;
 																		background-repeat: no-repeat;">
