@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     def get_banner(self, obj):
         return obj.banner.file
     get_banner.short_description = 'Banner Path'
-    get_banner.admin_order_field = "file"
+    get_banner.admin_order_field = "banner__file"
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('name', 'file')
