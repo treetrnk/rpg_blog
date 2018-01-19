@@ -5,7 +5,11 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'banner', 'get_banner', 'user', 'published_date')
     prepopulated_fields = {'slug': ('title',)}
     def get_banner(self, obj):
-        return obj.banner_url()
+        return formatl_html(
+                '<a href="{}" target="banner">{}</a>',
+                obj.banner_url(),
+                obj.banner_url()
+        )
     get_banner.short_description = 'Banner Path'
     get_banner.admin_order_field = "banner"
 
