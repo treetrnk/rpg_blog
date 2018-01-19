@@ -6,7 +6,8 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     def get_banner(self, obj):
         return obj.banner.file
-    get_banner.short_description = 'Banner'
+    get_banner.short_description = 'Banner Path'
+    get_banner.admin_order_field = "file"
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('name', 'file')
