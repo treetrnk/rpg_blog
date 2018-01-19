@@ -7,8 +7,8 @@ class PostAdmin(admin.ModelAdmin):
     def get_banner(self, obj):
         return formatl_html(
                 '<a href="{}" target="banner">{}</a>',
-                obj.banner_url(),
-                obj.banner_url()
+                str(obj.banner_url()),
+                str(obj.banner_url())
         )
     get_banner.short_description = 'Banner Path'
     get_banner.admin_order_field = "banner"
