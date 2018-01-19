@@ -5,5 +5,5 @@ def index(request):
     return render(request, 'index.html') 
 
 def about(request):
-    post = Post.objects.filter(slug='about')[0:1]
+    post = Post.objects.get(slug='about')
     return render(request, 'about.html', {'about': post}) 
