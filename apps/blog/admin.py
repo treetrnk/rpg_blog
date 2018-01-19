@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Post,Tag,Image
 
 class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'banner', 'user', 'published_date')
     prepopulated_fields = {'slug': ('title',)}
 
 # Register your models here.
