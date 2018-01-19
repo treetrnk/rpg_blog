@@ -22,6 +22,9 @@ class Image(models.Model):
         def filename(self):
                 return os.path.basename(self.file.name)
 
+        def file_path(self):
+                return '/media/' + str(self.filename())
+
         def __str__(self):
                 return self.name
 
