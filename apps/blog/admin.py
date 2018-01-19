@@ -1,11 +1,12 @@
 from django.contrib import admin
 from .models import Post,Tag,Image
+from django.utils.html import format_html
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'banner', 'get_banner', 'user', 'published_date')
     prepopulated_fields = {'slug': ('title',)}
     def get_banner(self, obj):
-        return formatl_html(
+        return format_html(
                 '<a href="{}" target="banner">{}</a>',
                 str(obj.banner_url()),
                 str(obj.banner_url())
