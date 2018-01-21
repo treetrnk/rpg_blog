@@ -26,3 +26,13 @@ def post(request, year, month, day, slug):
 		'description': post.clean_body()[0:120] + '...',
 	}
 	return render(request, 'blog/post.html', {'post': post, 'meta': meta})
+
+def rss(request):
+    meta = {
+        'title': 'rpg stuff - A blog by Nathan Hare',
+        'image': '/static/images/logo.png',
+        'favicon': '/static/images/favicon.png',
+        'description': 'A blog by Nathan Hare about Fate Core and other roleplaying games.',
+    }
+    posts = Post.objects.filter(published_date__lte=datetime.now()).order_by('-published_date')
+    return render(request, 'blog/rss.xml', {'posts': posts, 'meta': meta})
