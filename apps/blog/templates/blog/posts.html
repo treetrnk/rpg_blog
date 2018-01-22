@@ -3,6 +3,22 @@
 {% block content %}
 
 			<div class="container-fluid">
+				{% if tags or search %}
+				<div class="row">
+					<div class="col-xs-12">
+						{% if tags %}
+							<p><b>Tags:</b> 
+							 	{% for tag in tags %}
+									<span class="label label-defualt">{{ tag }}</span>
+								{% endfor %}
+							</p>
+						{% endif %}
+						{% if search %}
+
+						{% endif %}
+					</div>
+				</div>
+				{% endif %}
 				<div class="row">
 					<div class="col-xs-12 wall">
 						<br />

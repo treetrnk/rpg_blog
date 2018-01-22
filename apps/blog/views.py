@@ -2,17 +2,30 @@ from django.shortcuts import render
 from datetime import datetime
 from .models import Post
 
-def index(request):
-	meta = {
-		'title': 'rpg stuff - A blog by Nathan Hare',
-		'image': '/static/images/logo.png',
-		'favicon': '/static/images/favicon.png',
-		'description': 'A blog by Nathan Hare about Fate Core and other roleplaying games.',
+def index(request, tags='', search=''):
+        print('Tags: ' + str(tags))
+        print('Search: ' + str(search))
+        context = {}
+        context['meta'] = {
+            'title': 'rpg stuff - A blog by Nathan Hare',
+            'image': '/static/images/logo.png',
+            'favicon': '/static/images/favicon.png',
+            'description': 'A blog by Nathan Hare about Fate Core and other roleplaying games.',
 	}
 	# get the blog posts that are published
-	posts = Post.objects.filter(published_date__lte=datetime.now()).order_by('-published_date')
+        if tags:
+            tag_array = ','.join(tags)
+            posts = Post.objects.filter(tags__icontains=tag_array)
+            context['tags'] = tag_array 
+        elif search:
+            search_array = ' '.join(search)
+            posts = Post.objects.filter(body__icontains=search_array)
+            context['search'] = search_array 
+        else:
+            posts = Post.objects.filter(published_date__lte=datetime.now()).order_by('-published_date')
+        context['posts'] = posts
 	# now return the rendered template
-	return render(request, 'blog/posts.html', {'posts': posts, 'meta': meta})
+        return render(request, 'blog/posts.html', context)
 
 def post(request, year, month, day, slug):
 	post = Post.objects.filter(published_date__year=year,
