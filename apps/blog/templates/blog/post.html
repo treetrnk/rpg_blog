@@ -20,12 +20,14 @@
 				<div class="content">
 					{{ post.html_body|safe }}
 					<br />
+					{% if post.banner.credit %}
 					<center>
 						<small class="text-muted">
 							{{ post.banner.html_credit|safe }}
 						</small>
 					</center>
 					<br />
+					{% endif %}
 					<i class="fa fa-tags"></i> Tags:
 				{% for tag in post.tags.all %}
 					<span class="label label-default">{{ tag }}</span>
