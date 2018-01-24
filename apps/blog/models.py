@@ -18,12 +18,18 @@ class Tag(models.Model):
 class Image(models.Model):
         name = models.CharField(max_length=50)
         file = models.ImageField()
+        credit = models.TextField(max_length=300, blank=True, null=True)
 
         def filename(self):
             return os.path.basename(self.file.name)
 
         def file_path(self):
             return '/media/' + str(self.filename())
+
+        def html_credit(self):
+            if self.credit is not None:
+                return markdown.markdown(self.credit)
+            return ''
 
         def __str__(self):
             return self.name
@@ -38,6 +44,7 @@ class Image(models.Model):
 class Post(models.Model):
         title = models.CharField(max_length=200)
         slug = models.SlugField(max_length=200, null=True)
+        summary = models.TextField(max_length=300, blank=True, null=True)
         body = models.TextField(max_length=20000)
         tags = models.ManyToManyField(Tag, blank=True)
         banner = models.ForeignKey(Image, on_delete=models.SET_NULL, blank=True, null=True)
@@ -68,11 +75,12 @@ class Post(models.Model):
 
         def clean_body(self):
             pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})'
-            print(re.sub(pattern, '', self.body)[0:300])
             return re.sub(pattern, '', self.body)
 
         def description(self):
-            return str(self.clean_body[0:250]) + '...'
+            if self.summary is None:
+                return self.clean_body()[0:295] + '...'
+            return self.summary
 
         def __str__(self):
             return self.title

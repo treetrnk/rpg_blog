@@ -36,7 +36,7 @@ def post(request, year, month, day, slug):
 		'title': post.title + ' - rpg stuff',
 		'image': str(post.banner_url()),
 		'favicon': '/static/images/favicon.png',
-		'description': post.clean_body()[0:120] + '...',
+		'description': post.description(),
 	}
 	return render(request, 'blog/post.html', {'post': post, 'meta': meta})
 
