@@ -306,13 +306,17 @@
 
 				defaultColWidth = $('.brick').width() + margin/2;
 
-				setupBlocks();
+				//setupBlocks();
 
 				setTimeout(function() {
 					setupBlocks();
-				}, 1500);
+				}, 1);
 
-				$(window).resize(setupBlocks);
+				$(window).resize(function() {
+					setTimeout(function() {
+						setupBlocks();
+					}, 900);
+				});
 
 				$('header .navbar-header h3').mouseleave(rollHeaderDice);
 
