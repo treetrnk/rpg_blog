@@ -5,11 +5,22 @@
 		<title>{{ meta.title }}</title>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content='{{ meta.description }}' />
 		<meta property="og:title" content="{{ meta.title }}" />
 		<meta property="og:image" content="{{ meta.image }}" />
 		<meta property="og:description" content="{{ meta.description }}">
 		<meta property="og:url" content="{{ BASE_URL }}{{ request.get_full_path }}">
+		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="rpg stuff - A blog by Nathan Hare">
+		<meta name="twitter:title" content='{{ meta.title }}'>
+		<meta name="twitter:description" content="{{ meta.description }}">
+		<meta name="twitter:image:src" content="{{ meta.image }}">
+		<meta name="twitter:creator" content="@treetrnk">
+		<!-- Google+ -->
+		<meta itemprop="name" content='{{ meta.title }}'>
+		<meta itemprop="description" content='{{ meta.description }}'>
+		<meta itemprop="image" content='{{ meta.image }}'>
 		<link rel="shortcut icon" href="{{ meta.favicon }}" type="image/x-icon">
 		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}" media="screen">

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 import pytz
 import os
 import re
@@ -56,7 +57,7 @@ class Post(models.Model):
             return markdown.markdown(self.body)
 
         def next_post(self):
-            return self.get_next_by_published_date()
+            return self.get_next_by_published_date(published_date__lte=datetime.now())
 
         def previous_post(self):
             return self.get_previous_by_published_date()

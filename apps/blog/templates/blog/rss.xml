@@ -8,7 +8,7 @@
 						<item>
 								<title>{{ post.title }}</title>
 								<pubDate>{{ post.published_date }}</pubDate>
-								<description>{{ post.html_body }}</description>
+								<description>{{ post.clean_body }}</description>
 								<link>{{ BASE_URL }}{{ post.url }}</link>
 								{% for tag in post.tags.all %}
 									<category>{{ tag }}</category>
