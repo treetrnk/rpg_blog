@@ -308,6 +308,10 @@
 
 				setupBlocks();
 
+				setTimeout(function() {
+					setupBlocks();
+				}, 1500);
+
 				$(window).resize(setupBlocks);
 
 				$('header .navbar-header h3').mouseleave(rollHeaderDice);
