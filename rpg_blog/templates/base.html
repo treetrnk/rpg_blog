@@ -133,7 +133,7 @@
 				border: 1px solid #000;
 				padding: 20px;
 				*/
-				width: 425px;
+				width: 400px;
 				box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
 				-webkit-transition: all 0.7s ease-in-out;
     		-moz-transition: all 0.7s ease-in-out;
@@ -241,23 +241,31 @@
 			});
 
 			function setupBlocks() {
-				windowWidth = $('.wall').width();
+				windowWidth = $(window).width();
+				//console.log("Window width: " + windowWidth);
+
+				var colAmnt = Math.floor(windowWidth/(defaultColWidth));
+				//console.log("Column width + margin: " + (defaultColWidth + margin));
+				//console.log("Amount of columns: " + colAmnt);
+				//console.log("Default column width: " + defaultColWidth);
+				//console.log("Actual column width: " + Math.floor(windowWidth/colAmnt - margin * 2));
 
 				if (windowWidth < (defaultColWidth+margin*2)*2) {
-					$('.brick').width(windowWidth - margin/2);
+					$('.brick').width(windowWidth - margin*2);
 					$('.brick').css('position', 'unset');
 				} else {
 					$('.brick').css('position', 'absolute');
-					$('.brick').width(defaultColWidth - margin/2);
+					$('.brick').width(Math.floor(windowWidth/colAmnt - margin * 2));
 					colWidth = $('.brick').outerWidth();
+					//console.log("Brick outer width : " + $('.brick').outerWidth());
 
 					blocks = [];
 					console.log(blocks);
-					colCount = Math.floor(windowWidth/(colWidth+margin*2));
+					colCount = colAmnt; //Math.floor(windowWidth/(colWidth+margin*2));
 					for(var i=0;i<colCount;i++){
 						blocks.push(margin);
 					}
-					console.log(blocks);
+					//console.log(blocks);
 					positionBlocks();
 				}
 			}
