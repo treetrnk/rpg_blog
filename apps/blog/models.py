@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 from datetime import datetime
 import pytz
 import os
@@ -77,6 +78,12 @@ class Post(models.Model):
         def clean_body(self):
             pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})'
             return re.sub(pattern, '', self.body)
+
+        def is_published(self):
+            if self.published_date <= timezone.now():
+                return True
+            else:
+                return False
 
         def description(self):
             if self.summary is None:
