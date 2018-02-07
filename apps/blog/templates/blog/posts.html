@@ -27,8 +27,12 @@
 
 							<div class="brick thumbnail">
 
-								<a href="{{ p.url }}">
-									<img src="{{ p.banner_url }}" />
+								<a href="{{ p.url }}" class="hidden-xs">
+									<img src="{{ p.banner_url }}" class="img-responsive" />
+								</a>
+
+								<a href="{{ p.url }}" class="pull-left hidden-lg hidden-md hidden-sm">
+									<div class="mobile-thumbnail" style="background: url({{ p.banner_url }});background-size: cover;background-position: center center;background-repeat: no-repeat;"></div>
 								</a>
 
 								<div class="caption">
