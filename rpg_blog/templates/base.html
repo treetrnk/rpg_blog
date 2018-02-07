@@ -133,13 +133,15 @@
 				border: 1px solid #000;
 				padding: 20px;
 				*/
-				width: 375px;
+				width: 400px;
 				box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+				/*
 				-webkit-transition: all 0.7s ease-in-out;
     		-moz-transition: all 0.7s ease-in-out;
     		-o-transition: all 0.7s ease-in-out;
     		-ms-transition: all 0.7s ease-in-out;
     		transition: all 0.7s ease-in-out;
+				*/
 			}
 			.label {
 				margin-bottom: 15px;
@@ -317,14 +319,16 @@
 
 				setupBlocks();
 
+				/*
 				setTimeout(function() {
 					setupBlocks();
-				}, 700);
+				}, 1);
+				*/
 
 				$(window).resize(function() {
 					setTimeout(function() {
 						setupBlocks();
-					}, 650);
+					}, 250);
 				});
 
 				$('header .navbar-header h3').mouseleave(rollHeaderDice);
