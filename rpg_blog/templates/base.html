@@ -170,6 +170,24 @@
 			.brick .caption h3 {
 				margin-top: 0;
 			}
+			#imageBackdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+        z-index: 5;
+      }
+      #imageViewer {
+        max-width: 99%;
+        max-height: 99%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+      }
 		</style>
 	</head>
 	<body>
@@ -240,6 +258,9 @@
 		<footer>
 
 		</footer>
+
+		<div class="hidden" id="imageBackdrop"></div>
+    <div class="hidden" id="imageViewer"></div>
 
 		<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
 		<script src="{% static '/js/bootstrap.min.js' %}"></script>
@@ -324,6 +345,26 @@
 				}, 1001);
 			}
 
+			function closeImageViewer() {
+				$('#imageViewer').fadeOut();
+				$('#imageBackdrop').fadeOut();
+				setTimeout(function() {
+					$('#imageViewer').addClass('hidden');
+					$('#imageBackdrop').addClass('hidden');
+				}, 500);
+			}
+
+			function enableImageViewer() {
+				$(".zoom-img").click(function(e) {
+					e.preventDefault;
+					var img = $(this).attr('src');
+					//window.scroll(0,0);
+					$('#imageBackdrop').removeClass('hidden').fadeIn();
+					$('#imageViewer').html('<img src="' + img + '" class="img-responsive" />');
+					$('#imageViewer').removeClass('hidden').fadeIn();
+				});
+			}
+
 			$(document).ready(function () {
 
 				rollHeaderDice();
@@ -331,6 +372,8 @@
 				defaultColWidth = $('.brick').width() + margin/2;
 
 				setupBlocks();
+
+				enableImageViewer();
 
 				/*
 				setTimeout(function() {
