@@ -364,10 +364,8 @@
 					var img = $(this).attr('src');
 					//window.scroll(0,0);
 					$('#imageViewer').html('<img src="' + img + '" class="img-responsive" />');
-					setTimeout(function() {
-						$('#imageBackdrop').removeClass('hidden').fadeIn();
-						$('#imageViewer').removeClass('hidden').fadeIn();
-					}, 25);
+					$('#imageBackdrop').removeClass('hidden').fadeIn();
+					$('#imageViewer').removeClass('hidden').fadeIn();
 				});
 			}
 
