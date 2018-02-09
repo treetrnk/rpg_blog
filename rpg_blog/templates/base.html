@@ -170,6 +170,11 @@
 			.brick .caption h3 {
 				margin-top: 0;
 			}
+			.zoom_img {
+				cursor: -moz-zoom-in; 
+				cursor: -webkit-zoom-in; 
+				cursor: zoom-in;
+			}
 			#imageBackdrop {
         position: fixed;
         top: 0;
@@ -374,6 +379,8 @@
 				setupBlocks();
 
 				enableImageViewer();
+
+				$('#imageViewer, #imageBackdrop, header').click(closeImageViewer);
 
 				/*
 				setTimeout(function() {
