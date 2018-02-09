@@ -170,7 +170,7 @@
 			.brick .caption h3 {
 				margin-top: 0;
 			}
-			.zoom_img {
+			.zoom-img {
 				cursor: -moz-zoom-in; 
 				cursor: -webkit-zoom-in; 
 				cursor: zoom-in;
@@ -361,12 +361,13 @@
 
 			function enableImageViewer() {
 				$(".zoom-img").click(function(e) {
-					e.preventDefault;
 					var img = $(this).attr('src');
 					//window.scroll(0,0);
-					$('#imageBackdrop').removeClass('hidden').fadeIn();
 					$('#imageViewer').html('<img src="' + img + '" class="img-responsive" />');
-					$('#imageViewer').removeClass('hidden').fadeIn();
+					setTimeout(function() {
+						$('#imageBackdrop').removeClass('hidden').fadeIn();
+						$('#imageViewer').removeClass('hidden').fadeIn();
+					}, 25);
 				});
 			}
 
