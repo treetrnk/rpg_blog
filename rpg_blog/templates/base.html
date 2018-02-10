@@ -201,6 +201,7 @@
 			.zoomed {
 				max-width: 100%; 
 				max-height: 100%; 
+				min-width: 250px;
 				margin: auto;
 			}
 		</style>
@@ -372,8 +373,8 @@
 				$(".zoom-img").click(function(e) {
 					var img = $(this).attr('src');
 					//window.scroll(0,0);
-					$('#imageViewer').html('<img src="' + img + '" class="img-responsive zoomed" />');
 					$('#imageBackdrop').removeClass('hidden').fadeIn();
+					$('#imageViewer').html('<img src="' + img + '" class="img-responsive zoomed" />');
 				});
 			}
 
