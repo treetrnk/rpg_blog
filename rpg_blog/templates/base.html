@@ -171,6 +171,7 @@
 				margin-top: 0;
 			}
 			.zoom-img {
+				cursor: pointer;
 				cursor: -moz-zoom-in; 
 				cursor: -webkit-zoom-in; 
 				cursor: zoom-in;
@@ -185,16 +186,22 @@
         z-index: 5;
       }
       #imageViewer {
-        max-width: 99%;
-        max-height: 99%;
+        max-width: 90%;
+        max-height: 90%;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 10;
+				cursor: pointer;
+				cursor: -moz-zoom-out;
+				cursor: -webkit-zoom-out;
+				cursor: zoom-out;
       }
-			img.zoomed {
-				min-width: 25vw;
+			.zoomed {
+				max-width: 100%; 
+				max-height: 100%; 
+				margin: auto;
 			}
 		</style>
 	</head>
@@ -267,8 +274,9 @@
 
 		</footer>
 
-		<div class="hidden" id="imageBackdrop"></div>
-    <div class="hidden" id="imageViewer"></div>
+		<div class="hidden" id="imageBackdrop">
+			<div class="hidden" id="imageViewer"></div>
+		</div>
 
 		<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
 		<script src="{% static '/js/bootstrap.min.js' %}"></script>
@@ -354,10 +362,8 @@
 			}
 
 			function closeImageViewer() {
-				$('#imageViewer').fadeOut();
 				$('#imageBackdrop').fadeOut();
 				setTimeout(function() {
-					$('#imageViewer').addClass('hidden');
 					$('#imageBackdrop').addClass('hidden');
 				}, 500);
 			}
@@ -368,7 +374,6 @@
 					//window.scroll(0,0);
 					$('#imageViewer').html('<img src="' + img + '" class="img-responsive zoomed" />');
 					$('#imageBackdrop').removeClass('hidden').fadeIn();
-					$('#imageViewer').removeClass('hidden').fadeIn();
 				});
 			}
 
