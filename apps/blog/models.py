@@ -86,9 +86,9 @@ class Post(models.Model):
                 return False
 
         def description(self):
-            if self.summary is None:
+            if self.summary is None or not self.summary:
                 return self.clean_body()[0:295] + '...'
-            return self.summary
+            return self.summary + '...'
 
         def __str__(self):
             return self.title
