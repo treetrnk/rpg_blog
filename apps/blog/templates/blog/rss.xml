@@ -9,7 +9,10 @@
 								<title>{{ post.title }}</title>
 								<pubDate>{{ post.published_date }}</pubDate>
 								<description>
-									{{ post.description }}
+									<![CDATA[
+									<a href="{{ post.url }}"><img src='{{ post.banner_url }}' width="100" style="float:left;" /></a>
+										{{ post.description }}
+									]]>
 								</description>
 								<link>{{ BASE_URL }}{{ post.url }}</link>
 								{% for tag in post.tags.all %}
