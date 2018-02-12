@@ -203,6 +203,9 @@
 				cursor: -webkit-zoom-out;
 				cursor: zoom-out;
 			}
+			.label {
+				line-height: 2.2;
+			}
 		</style>
 	</head>
 	<body>
@@ -254,6 +257,7 @@
 							</ul>
 						</li>
 						<li><a href="/about/">About</a></li>
+						<li><a href="javascript:void(0)" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search"></i> <span class="hidden-lg hidden-md hidden-sm">Search</span></a></li>
 					</ul>
 
 				</nav>
@@ -276,6 +280,29 @@
 
 		<div class="hidden" id="imageBackdrop">
 			<div id="imageViewer"></div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="searchModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body text-center">
+						<form class="form" action="/" method="get">
+							<div class="input-group">
+								<input type="text" name="search" placeholder="goblins, sharkman, dice, etc." class="form-control" id="searchInput" />
+								<span class="input-group-btn">
+									<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+								</span>
+							</div>
+						</form>
+						<br />
+						<i class="fa fa-tags"></i> <b>Tags:</b>
+						{% for tag in tags %}
+						<a href="/?tag={{ tag }}"><span class="label label-default">{{ tag }}</span></a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
@@ -398,6 +425,10 @@
 						setupBlocks();
 					}, 250);
 				});
+
+				$('#searchModal').on('shown.bs.modal', function () {
+					$('#searchInput').focus()
+				})
 
 				$('header .navbar-header h3').mouseleave(rollHeaderDice);
 

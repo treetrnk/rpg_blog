@@ -1,9 +1,17 @@
 from django.shortcuts import render
 from datetime import datetime
-from .models import Post
+from .models import Post,Tag
 
-def index(request, tags='', search=''):
-        print('Tags: ' + str(tags))
+def index(request):
+        try:
+            tag = request.GET['tag'] 
+        except KeyError:
+            tag = ''
+        try:
+            search = request.GET['search'] 
+        except KeyError:
+            search = ''
+        print('Tags: ' + str(tag))
         print('Search: ' + str(search))
         context = {}
         context['meta'] = {
@@ -13,17 +21,18 @@ def index(request, tags='', search=''):
             'description': 'A blog by Nathan Hare about Fate Core and other roleplaying games.',
 	}
 	# get the blog posts that are published
-        if tags:
-            tag_array = ','.join(tags)
-            posts = Post.objects.filter(tags__icontains=tag_array)
-            context['tags'] = tag_array 
+        if tag:
+            #tag_array = ','.join(tags)
+            posts = Post.objects.filter(tags__name__in=[tag])
+            context['searchtag'] = tag
         elif search:
-            search_array = ' '.join(search)
-            posts = Post.objects.filter(body__icontains=search_array)
-            context['search'] = search_array 
+            #search_array = ' '.join(search)
+            posts = Post.objects.filter(body__icontains=search)
+            context['search'] = search 
         else:
             posts = Post.objects.filter(published_date__lte=datetime.now()).order_by('-published_date')
         context['posts'] = posts
+        context['tags'] = Tag.objects.all().order_by('name')
 	# now return the rendered template
         return render(request, 'blog/posts.html', context)
 

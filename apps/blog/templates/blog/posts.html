@@ -6,15 +6,15 @@
 				{% if tags or search %}
 				<div class="row">
 					<div class="col-xs-12">
-						{% if tags %}
-							<p><b>Tags:</b> 
-							 	{% for tag in tags %}
-									<span class="label label-defualt">{{ tag }}</span>
-								{% endfor %}
-							</p>
+						{% if searchtag %}
+							<h2>Tag:
+								<a href="/"><span class="label label-default">{{ searchtag }}</span></a>
+							</h2>
 						{% endif %}
 						{% if search %}
-
+							<h2>Search:
+								<a href="/">{{ search }}</a>
+							</h2>
 						{% endif %}
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 
 									<i class="fa fa-tags"></i>
 									{% for tag in p.tags.all %}
-										<span class="label label-default">{{ tag }}</span>
+										<a href="/?tag={{ tag }}"><span class="label label-default">{{ tag }}</span></a>
 									{% endfor %}
 
 								</div>
