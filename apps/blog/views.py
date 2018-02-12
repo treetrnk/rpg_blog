@@ -23,11 +23,11 @@ def index(request):
 	# get the blog posts that are published
         if tag:
             #tag_array = ','.join(tags)
-            posts = Post.objects.filter(tags__name__in=[tag])
+            posts = Post.objects.filter(tags__name__in=[tag]).filter(published_date__lte=datetime.now())
             context['searchtag'] = tag
         elif search:
             #search_array = ' '.join(search)
-            posts = Post.objects.filter(body__icontains=search)
+            posts = Post.objects.filter(body__icontains=search).filter(published_date__lte=datetime.now())
             context['search'] = search 
         else:
             posts = Post.objects.filter(published_date__lte=datetime.now()).order_by('-published_date')
