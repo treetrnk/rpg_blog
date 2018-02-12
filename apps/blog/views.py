@@ -37,17 +37,18 @@ def index(request):
         return render(request, 'blog/posts.html', context)
 
 def post(request, year, month, day, slug):
-	post = Post.objects.filter(published_date__year=year,
-		published_date__month=month,
-		#published_date__day=day,
-		slug=slug)[0]
-	meta = {
-		'title': post.title + ' - rpg stuff',
-		'image': str(post.banner_url()),
-		'favicon': '/static/images/favicon.png',
-		'description': post.description(),
-	}
-	return render(request, 'blog/post.html', {'post': post, 'meta': meta})
+        post = Post.objects.filter(published_date__year=year,
+            published_date__month=month,
+            #published_date__day=day,
+            slug=slug)[0]
+        meta = {
+            'title': post.title + ' - rpg stuff',
+            'image': str(post.banner_url()),
+            'favicon': '/static/images/favicon.png',
+            'description': post.description(),
+        }
+        tags = Tag.objects.all().order_by('name')
+        return render(request, 'blog/post.html', {'post': post, 'meta': meta, 'tags': tags})
 
 def rss(request):
     meta = {
