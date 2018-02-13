@@ -22,8 +22,8 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^about/', views.about, name="about"),
-    url(r'^error/', views.handler404, name="error"),
+    url(r'^about/$', views.about, name="about"),
+    url(r'^error/$', views.handler404, name="error"),
     url('', include('apps.tools.urls')),
     url('', include('apps.blog.urls')),
 ]
