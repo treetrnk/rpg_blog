@@ -32,5 +32,7 @@ if settings.DEBUG:
         url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     ]
 
+handler400 = views.handler404
+handler403 = views.handler404
 handler404 = views.handler404
 handler500 = views.handler404

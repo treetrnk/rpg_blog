@@ -7,4 +7,3 @@ urlpatterns = [
     url(r'^(?:rss(?:\.xml)?)|(?:feed(?:.xml)?)$', views.rss, name='rss'),
     url(r'^$', views.index, name='index'),
 ]
-
