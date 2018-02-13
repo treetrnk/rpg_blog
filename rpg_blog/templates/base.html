@@ -304,7 +304,7 @@
 
 		<div id="subscribe" class="text-right">
 			<span id="subHide">Close (X)</span><br />
-			<a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" class="btn btn-primary" style="margin-top:5px;" target="_blank"><i class="fa fa-envelope"></i> Subscribe</a>
+			<a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" title="Subscribe" data-toggle="tooltip" class="btn btn-primary" style="margin-top:5px;" target="_blank"><i class="fa fa-envelope"></i> <span class='hidden-xs'>Subscribe</span></a>
 		</div>
 
 		<!-- Modal -->
@@ -473,6 +473,8 @@
 				})
 
 				$('header .navbar-header h3').mouseleave(rollHeaderDice);
+
+				$('[data-toggle="tooltip"]').tooltip();
 
 			});
 		</script>
