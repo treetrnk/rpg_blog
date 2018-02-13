@@ -441,6 +441,17 @@
 
 				$('.text-huge i.fa-minus-square').addClass('rotate');
 
+				setTimeout(function() {
+					$('.text-huge i.fa-minus-square').removeClass('rotate');
+				}, 1001);
+
+				$('.text-huge i.fa-minus-square').mouseleave(function() { 
+					$(this).addClass('rotate');
+					setTimeout(function() {
+						$('.text-huge i.fa-minus-square').removeClass('rotate');
+					}, 1001);
+				})
+
 				$('#imageViewer, #imageBackdrop, header').click(closeImageViewer);
 
 				$('#subscribe span').click(function() {
