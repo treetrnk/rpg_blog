@@ -23,4 +23,5 @@ def handler404(request):
         'favicon': '/static/images/favicon.png',
         'description': 'A blog by Nathan Hare about Fate Core and other roleplaying games.',
     }
+    tags = Tag.objects.all().order_by('name')
     return render(request, 'page.html', {'page': post, 'meta': meta, 'tags': tags}) 
