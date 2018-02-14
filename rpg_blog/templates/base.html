@@ -211,11 +211,16 @@
 				bottom: 10px;
 				right: 20px;
 				z-index: 10;
+				-webkit-transition: all 0.3s ease-in-out;
+    		-moz-transition: all 0.3s ease-in-out;
+    		-o-transition: all 0.3s ease-in-out;
+    		-ms-transition: all 0.3s ease-in-out;
+    		transition: all 0.3s ease-in-out;
 			}
 			#subscribe a {
 				box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 			}
-			#subscribe span {
+			#subscribe #subhide {
 				font-size: 15px;
 				text-shadow: 0 0 2px #ffffff;
 				cursor: pointer;
@@ -303,8 +308,10 @@
 		</div>
 
 		<div id="subscribe" class="text-right">
+			<!--
 			<span id="subHide">Close (X)</span><br />
-			<a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" title="Subscribe" data-toggle="tooltip" class="btn btn-primary" style="margin-top:5px;" target="_blank"><i class="fa fa-envelope"></i> <span class='hidden-xs'>Subscribe</span></a>
+			-->
+			<a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" class="btn btn-primary" style="margin-top:5px;" target="_blank"><i class="fa fa-envelope"></i> Subscribe</a>
 		</div>
 
 		<!-- Modal -->
@@ -431,6 +438,8 @@
 
 			$(document).ready(function () {
 
+				var curPos = $(window).scrollTop();
+
 				rollHeaderDice();
 
 				defaultColWidth = $('.brick').width() + margin/2;
@@ -466,6 +475,15 @@
 					setTimeout(function() {
 						setupBlocks();
 					}, 250);
+				});
+
+				$(window).scroll(function() {
+					if ($(window).scrollTop() > curPos) {
+						$('#subscribe').css({bottom: -100});
+					} else {
+						$('#subscribe').css({bottom: 10});
+					}
+					curPos = $(window).scrollTop();
 				});
 
 				$('#searchModal').on('shown.bs.modal', function () {
