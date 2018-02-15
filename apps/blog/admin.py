@@ -19,9 +19,9 @@ class PostAdmin(admin.ModelAdmin):
     def get_url(self, obj):
         return format_html(
                 '<a href="{}" target="post">{}</a>',
-                '/' + obj.published_date.year + '/' + 
-                    obj.published_date.month + '/' + 
-                    obj.published_date.day + '/' + 
+                '/' + str(obj.published_date.year) + '/' + 
+                    str(obj.published_date.month) + '/' + 
+                    str(obj.published_date.day) + '/' + 
                     obj.slug + '?code=' + obj.code(),
                 'View Post'
         )
