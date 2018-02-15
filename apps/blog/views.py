@@ -52,11 +52,14 @@ def post(request, year, month, day, slug):
             'favicon': '/static/images/favicon.png',
             'description': post.description(),
         }
+        print(request.GET)
+        print(hasattr(request.GET, 'code'))
         tags = Tag.objects.all().order_by('name')
         if post.published_date <= utc.localize(datetime.now()):
             return render(request, 'blog/post.html', {'post': post, 'meta': meta, 'tags': tags})
-        elif hasattr(request.GET, 'code'):
-            if request.GET['code'].digest() == hashlib.sha512(post.slug + str(datetime.now().month()) + str(datetime.now().day())).digest():
+        elif request.method == 'GET' and 'code' in request.GET:
+            print(post.code())
+            if request.GET['code'] == post.code():
                 return render(request, 'blog/post.html', {'post': post, 'meta': meta, 'tags': tags})
             else:
                 return handler404(request)

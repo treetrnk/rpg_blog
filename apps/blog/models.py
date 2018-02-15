@@ -6,6 +6,7 @@ import pytz
 import os
 import re
 import markdown
+import hashlib
 
 # Create your models here.
 class Tag(models.Model):
@@ -89,6 +90,11 @@ class Post(models.Model):
             if self.summary is None or not self.summary:
                 return self.clean_body()[0:295] + '...'
             return self.summary + '...'
+
+        def code(self):
+            return hashlib.sha512(str(self.slug + 
+                str(datetime.now().month) + 
+                str(datetime.now().day)).encode('utf-8')).hexdigest()
 
         def __str__(self):
             return self.title

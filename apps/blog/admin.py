@@ -19,8 +19,11 @@ class PostAdmin(admin.ModelAdmin):
     def get_url(self, obj):
         return format_html(
                 '<a href="{}" target="banner">{}</a>',
-                '/' + obj.published_date.year() + '/' + obj.published_date.month() + '/' + obj.published_date.day() + '/' + obj.slug + '?code=' + hashlib(str(obj.slug) + str(datetime.now().month()) + str(datetime.now().day())),
-                '/' + obj.published_date.year() + '/' + obj.published_date.month() + '/' + obj.published_date.day() + '/' + obj.slug + '?code=' + hashlib(str(obj.slug) + str(datetime.now().month()) + str(datetime.now().day()))
+                '/' + obj.published_date.year() + '/' + 
+                    obj.published_date.month() + '/' + 
+                    obj.published_date.day() + '/' + 
+                    obj.slug + '?code=' + obj.code(),
+                'View Post'
         )
     get_url.short_description = 'URL'
     get_url.admin_order_field = "published_date"
