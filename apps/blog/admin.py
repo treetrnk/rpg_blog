@@ -5,7 +5,7 @@ from datetime import datetime
 import hashlib
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'banner', 'get_banner', 'get_url', 'user', 'published_date')
+    list_display = ('title', 'slug', 'get_url', 'banner', 'get_banner', 'user', 'published_date')
     prepopulated_fields = {'slug': ('title',)}
     def get_banner(self, obj):
         return format_html(
