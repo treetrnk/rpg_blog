@@ -20,8 +20,8 @@ class PostAdmin(admin.ModelAdmin):
         return format_html(
                 '<a href="{}" target="post">{}</a>',
                 '/' + obj.published_date.year + '/' + 
-                    obj.published_date.strftime('%m') + '/' + 
-                    obj.published_date.strftime('%d') + '/' + 
+                    obj.published_date.month + '/' + 
+                    obj.published_date.day + '/' + 
                     obj.slug + '?code=' + obj.code(),
                 'View Post'
         )
