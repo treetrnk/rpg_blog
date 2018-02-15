@@ -3,6 +3,7 @@ from datetime import datetime
 from .models import Post,Tag
 import pytz
 from rpg_blog.views import handler404
+import hashlib
 
 utc = pytz.UTC
 
@@ -54,6 +55,11 @@ def post(request, year, month, day, slug):
         tags = Tag.objects.all().order_by('name')
         if post.published_date <= utc.localize(datetime.now()):
             return render(request, 'blog/post.html', {'post': post, 'meta': meta, 'tags': tags})
+        elif hasattr(request.GET, 'code'):
+            if request.GET['code'].digest() == hashlib.sha512(post.slug + str(datetime.now().month()) + str(datetime.now().day())).digest():
+                return render(request, 'blog/post.html', {'post': post, 'meta': meta, 'tags': tags})
+            else:
+                return handler404(request)
         else:
             return handler404(request)
 
