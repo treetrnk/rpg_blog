@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from datetime import datetime
 from .models import Post,Tag
+import pytz
+from rpg_blog.views import handler404
+
+utc = pytz.UTC
 
 def index(request):
         try:
@@ -48,7 +52,10 @@ def post(request, year, month, day, slug):
             'description': post.description(),
         }
         tags = Tag.objects.all().order_by('name')
-        return render(request, 'blog/post.html', {'post': post, 'meta': meta, 'tags': tags})
+        if post.published_date <= utc.localize(datetime.now()):
+            return render(request, 'blog/post.html', {'post': post, 'meta': meta, 'tags': tags})
+        else:
+            return handler404(request)
 
 def rss(request):
     meta = {
