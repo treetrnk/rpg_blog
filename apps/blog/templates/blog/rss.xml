@@ -10,7 +10,7 @@
 								<pubDate>{{ post.published_date }}</pubDate>
 								<description>
 									<![CDATA[
-									<a href="{{ post.url }}"><img src='{{ post.banner_url }}' width="100" style="float:left;" /></a>
+									<a href="{{ BASE_URL }}{{ post.url }}"><img src='{{ BASE_URL }}{{ post.banner_url }}' width="100" style="float:left;" /></a>
 										{{ post.description }}
 									]]>
 								</description>
