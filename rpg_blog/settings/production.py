@@ -6,3 +6,4 @@ ALLOWED_HOSTS = ['www.rpg.nathanhare.net',
     'www.rpg2.nathanhare.net',
 ]
 
+SESSION_COOKIE_SECURE = True
