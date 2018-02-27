@@ -436,6 +436,16 @@
 				});
 			}
 
+			function loadHiddenBricks() {
+				$('.brick.hidden:lt(16)').each(function() {
+					$(this).fadeIn('slow');
+					$(this).removeClass('hidden');
+				});
+				//setTimeout(function() {
+					setupBlocks();
+				//}, 10);
+			}
+
 			$(document).ready(function () {
 
 				var curPos = $(window).scrollTop();
@@ -478,11 +488,17 @@
 				});
 
 				$(window).scroll(function() {
+
 					if ($(window).scrollTop() > curPos) {
 						$('#subscribe').css({bottom: -100});
 					} else {
 						$('#subscribe').css({bottom: 10});
 					}
+
+					if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+						loadHiddenBricks();
+					}
+
 					curPos = $(window).scrollTop();
 				});
 

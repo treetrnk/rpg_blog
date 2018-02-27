@@ -25,7 +25,11 @@
 
 						{% for p in posts %}
 
-							<div class="brick thumbnail">
+							{% if forloop.counter < 15 %}
+								<div class="brick thumbnail">
+							{% else %}
+								<div class="brick thumbnail hidden">
+							{% endif %}
 
 								<a href="{{ p.url }}" class="hidden-xs">
 									<img src="{{ p.banner_url }}" class="img-responsive" alt="{{ p.banner.name }}" />
@@ -123,5 +127,7 @@
 					</div>
 				</div>
 			</div>
+
+			<!--<h1 class="text-center text-muted"><i class="fas fa-spinner fa-pulse"></i></h1>-->
 
 {% endblock %}
