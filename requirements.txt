@@ -1,5 +1,5 @@
-# Requirements for rpg_blog
-
-Django
-Markdown
-gunicorn
+Django==2.0.1
+gunicorn==19.7.1
+Markdown==2.6.11
+Pillow==5.0.0
+pytz==2017.3
