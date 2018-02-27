@@ -487,6 +487,10 @@
 					}, 250);
 				});
 
+				if ($(window).height() == $(document).height()) {
+					loadHiddenBricks();
+				}
+
 				$(window).scroll(function() {
 
 					if ($(window).scrollTop() > curPos) {
