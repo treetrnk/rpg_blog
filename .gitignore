@@ -1,3 +1,8 @@
+# Project specific
+apps/tools/static/tools/js/umdaar/*
+apps/tools/static/tools/images/umdaar/*
+apps/tools/static/tools/images/storygen/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
