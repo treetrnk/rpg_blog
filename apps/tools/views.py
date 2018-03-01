@@ -7,8 +7,7 @@ def umdaar(request):
     return render(request, 'tools/umdaar.html')
 
 def storygen(request):
-    root_dir = os.path.dirname(settings.BASE_DIR)
-    icon_dir = os.path.join(root_dir, 'apps/tools/static/tools/images/storygen')
+    icon_dir = os.path.join(settings.BASE_DIR, 'apps/tools/static/tools/images/storygen')
     icons = os.listdir(icon_dir)
     return render(request, 'tools/storygen.html', {'icons': icons})
 
