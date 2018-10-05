@@ -231,6 +231,26 @@
 			.text-lg {
 				font-size: 20px;
 			}	
+			.wiggle {
+				animation: wiggle 0.82s cubic-bezier(.36,.07,.19,.97) both;
+				transform: rotate(0deg);
+				backface-visibility: hidden;
+				perspective: 1000px;
+			}
+			@keyframes wiggle {
+				10%, 90% {
+					transform: rotate(-5deg);
+				}
+				20%, 80% {
+					transform: rotate(5deg);
+				}
+				30%, 50%, 70% {
+					transform: rotate(-10deg);
+				}
+				40%, 60% {
+					transform: rotate(10deg);
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -446,6 +466,13 @@
 				//}, 10);
 			}
 
+			function wiggleIt(element) {
+				element.addClass("wiggle");
+				setTimeout(function() {
+					element.removeClass("wiggle");
+				}, 1000);
+			}
+
 			$(document).ready(function () {
 
 				var curPos = $(window).scrollTop();
@@ -457,6 +484,14 @@
 				setupBlocks();
 
 				enableImageViewer();
+
+				setTimeout(function() {
+					wiggleIt($("#subscribe a.btn"));
+				}, 4000);
+
+				setInterval(function() {
+					wiggleIt($("#subscribe a.btn"));
+				},60000);
 
 				$('.text-huge i.fa-minus-square').addClass('rotate');
 
@@ -497,6 +532,7 @@
 						$('#subscribe').css({bottom: -100});
 					} else {
 						$('#subscribe').css({bottom: 10});
+						wiggleIt($('#subscribe a.btn'));
 					}
 
 					if ($(window).scrollTop() + $(window).height() == $(document).height()) {
