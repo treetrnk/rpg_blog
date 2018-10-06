@@ -530,9 +530,14 @@
 
 					if ($(window).scrollTop() > curPos) {
 						$('#subscribe').css({bottom: -100});
+						if ($('#subscribe a.btn').hasClass("wiggle")) {
+							$('#subscribe a.btn').removeClass("wiggle");
+						}
 					} else {
 						$('#subscribe').css({bottom: 10});
-						wiggleIt($('#subscribe a.btn'));
+						if (!$('#subscribe a.btn').hasClass("wiggle")) {
+							$('#subscribe a.btn').addClass("wiggle");
+						}
 					}
 
 					if ($(window).scrollTop() + $(window).height() == $(document).height()) {
