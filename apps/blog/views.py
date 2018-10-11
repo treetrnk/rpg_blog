@@ -73,8 +73,9 @@ def rss(request):
         context['tag'] = tag
     except KeyError:
         tag = ''
+    subtitle = 'Tag: ' + tag if tag != '' else 'A blog by Nathan Hare'
     context['meta'] = {
-        'title': 'rpg stuff - A blog by Nathan Hare',
+        'title': 'rpg stuff - ' + subtitle,
         'image': '/static/images/logo.png',
         'favicon': '/static/images/favicon.png',
         'description': 'A blog by Nathan Hare about Fate Core and other roleplaying games.',
