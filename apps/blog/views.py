@@ -67,11 +67,20 @@ def post(request, year, month, day, slug):
             return handler404(request)
 
 def rss(request):
-    meta = {
+    context = {}
+    try:
+        tag = request.GET['tag'] 
+        context['tag'] = tag
+    except KeyError:
+        tag = ''
+    context['meta'] = {
         'title': 'rpg stuff - A blog by Nathan Hare',
         'image': '/static/images/logo.png',
         'favicon': '/static/images/favicon.png',
         'description': 'A blog by Nathan Hare about Fate Core and other roleplaying games.',
     }
-    posts = Post.objects.filter(published_date__lte=datetime.now()).order_by('-published_date')
-    return render(request, 'blog/rss.xml', {'posts': posts, 'meta': meta})
+    context['posts'] = Post.objects.filter(published_date__lte=datetime.now()).order_by('-published_date')
+    if tag:
+        context['posts'] = Post.objects.filter(tags__name__in=[tag]).filter(published_date__lte=datetime.now())
+        context['searchtag'] = tag
+    return render(request, 'blog/rss.xml', context)
