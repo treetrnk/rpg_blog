@@ -8,7 +8,8 @@
 					<div class="col-xs-12">
 						{% if searchtag %}
 							<h2>Tag:
-								<a href="/"><span class="label label-default">{{ searchtag }}</span></a>
+								<a href="/"><span class="label label-default">{{ searchtag }}</span></a>&nbsp;
+								<a href="/rss.xml?tag={{ searchtag }}" target="rss"><i class="fa fa-rss"></i> rss</a>
 							</h2>
 						{% endif %}
 						{% if search %}
