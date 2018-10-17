@@ -460,6 +460,14 @@
 			}
 
 			function enableImageViewer() {
+				$("a.zoom-img").click(function(e) {
+					e.preventDefault();
+					e.stopPropigation;
+					var img = $(this).attr('data-src');
+					//window.scroll(0,0);
+					$('#imageBackdrop').removeClass('hidden').fadeIn();
+					$('#imageViewer').html('<img src="' + img + '" class="zoomed" />');
+				});
 				$(".zoom-img").click(function(e) {
 					var img = $(this).attr('src');
 					//window.scroll(0,0);
