@@ -370,6 +370,7 @@
 
 		<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
 		<script src="{% static '/js/bootstrap.min.js' %}"></script>
+		<script src="{% static '/js/jquery.lazy.min.js' %}"></script>
 		<script>
 			var colCount = 0;
 			var colWidth = 0;
@@ -492,10 +493,11 @@
 			}
 
 			$(document).ready(function () {
+				$('.lazy').Lazy({
+					effect: 'fadeIn'
+				});
 
 				var curPos = $(window).scrollTop();
-
-				replace_brick_imgs();
 
 				rollHeaderDice();
 
