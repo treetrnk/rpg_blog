@@ -217,7 +217,7 @@
     		-ms-transition: all 0.3s ease-in-out;
     		transition: all 0.3s ease-in-out;
 			}
-			#subscribe a {
+			#subscribe a, #subscribe button {
 				box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 			}
 			#subscribe #subhide {
@@ -330,8 +330,19 @@
 		<div id="subscribe" class="text-right">
 			<!--
 			<span id="subHide">Close (X)</span><br />
+			<div class="btn-group dropup">
 			-->
-			<a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" class="btn btn-lg btn-primary" style="margin-top:5px;" target="_blank"><i class="fa fa-envelope"></i> Subscribe</a>
+			<a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" class="btn btn-lg btn-primary" target="_blank"><i class="fa fa-envelope"></i> Subscribe</a>
+			<!---
+			<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+			<ul class="dropdown-menu">
+				<li><a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" target="_blank">All</a></li>	
+				<li><a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" target="_blank">Play Reports</a></li>	
+				<li><a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" target="_blank">Pregens</a></li>	
+				<li><a href="https://feedburner.google.com/fb/a/mailverify?uri=RpgStuffBlog&amp;loc=en_US" target="_blank">Reviews</a></li>	
+			</ul>
+			</div>
+			--->
 		</div>
 
 		<!-- Modal -->
@@ -473,9 +484,18 @@
 				}, 1000);
 			}
 
+			function replace_brick_imgs() {
+				$(".brick").each(function() {
+					var img = $(this).find("img").attr("data-src");
+					$(this).find("img").attr("src", img);
+				});
+			}
+
 			$(document).ready(function () {
 
 				var curPos = $(window).scrollTop();
+
+				replace_brick_imgs();
 
 				rollHeaderDice();
 
@@ -486,12 +506,14 @@
 				enableImageViewer();
 
 				setTimeout(function() {
-					wiggleIt($("#subscribe a.btn"));
+					wiggleIt($("#subscribe"));
 				}, 4000);
 
+				/*
 				setInterval(function() {
-					wiggleIt($("#subscribe a.btn"));
+					wiggleIt($("#subscribe"));
 				},60000);
+				*/
 
 				$('.text-huge i.fa-minus-square').addClass('rotate');
 
@@ -512,9 +534,9 @@
 					$('#subscribe').fadeOut();
 				});
 
-				setTimeout(function() {
+				$('.brick img').on('load', function() {
 					setupBlocks();
-				}, 500);
+				});
 
 				$(window).resize(function() {
 					setTimeout(function() {
@@ -530,13 +552,13 @@
 
 					if ($(window).scrollTop() > curPos) {
 						$('#subscribe').css({bottom: -100});
-						if ($('#subscribe a.btn').hasClass("wiggle")) {
-							$('#subscribe a.btn').removeClass("wiggle");
+						if ($('#subscribe').hasClass("wiggle")) {
+							$('#subscribe').removeClass("wiggle");
 						}
 					} else {
 						$('#subscribe').css({bottom: 10});
-						if (!$('#subscribe a.btn').hasClass("wiggle")) {
-							$('#subscribe a.btn').addClass("wiggle");
+						if (!$('#subscribe').hasClass("wiggle")) {
+							$('#subscribe').addClass("wiggle");
 						}
 					}
 

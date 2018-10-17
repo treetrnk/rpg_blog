@@ -71,6 +71,9 @@ class Post(models.Model):
             day = str('%02d' % self.published_date.day)
             return '/' + year + '/' + month + '/' + day + '/' + self.slug
 
+        def banner_placeholder_url(self):
+            return '/static/images/loading.gif'
+
         def banner_url(self):
             if self.banner is None:
                 return '/media/default.png'
