@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.blog',
     'apps.tools',
+    'apps.beastiary',
 ]
 
 MIDDLEWARE = [
