@@ -490,10 +490,12 @@
 			}
 
 			function wiggleIt(element) {
-				element.addClass("wiggle");
-				setTimeout(function() {
-					element.removeClass("wiggle");
-				}, 1000);
+				if ($(window).height() < 700 || $(window).width() > 700) {
+					element.addClass("wiggle");
+					setTimeout(function() {
+						element.removeClass("wiggle");
+					}, 1000);
+				}
 			}
 
 			function replace_brick_imgs() {
@@ -570,9 +572,11 @@
 						}
 					} else {
 						$('#subscribe').css({bottom: 10});
-						if (!$('#subscribe').hasClass("wiggle")) {
-							$('#subscribe').addClass("wiggle");
-						}
+							if ($(window).height() < 700 || $(window).width() > 700) {
+								if (!$('#subscribe').hasClass("wiggle")) {
+									$('#subscribe').addClass("wiggle");
+								}
+							}
 					}
 
 					if ($(window).scrollTop() + $(window).height() == $(document).height()) {
