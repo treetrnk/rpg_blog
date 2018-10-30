@@ -490,7 +490,7 @@
 			}
 
 			function wiggleIt(element) {
-				if ($(window).height() < 700 || $(window).width() < 700) {
+				if ($(window).height() > 700 || $(window).width() > 700) {
 					element.addClass("wiggle");
 					setTimeout(function() {
 						element.removeClass("wiggle");
@@ -572,7 +572,7 @@
 						}
 					} else {
 						$('#subscribe').css({bottom: 10});
-							if ($(window).height() < 700 || $(window).width() < 700) {
+							if ($(window).height() > 700 || $(window).width() > 700) {
 								if (!$('#subscribe').hasClass("wiggle")) {
 									$('#subscribe').addClass("wiggle");
 								}
