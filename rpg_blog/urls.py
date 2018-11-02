@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^about/$', views.about, name="about"),
     url(r'^error/$', views.handler404, name="error"),
+    url(r'^npc/', include('apps.beastiary.urls')),
     url('', include('apps.tools.urls')),
     url('', include('apps.blog.urls')),
 ]

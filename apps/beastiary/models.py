@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from apps.blog.models import Tag, Image
+import markdown
 
 # Create your models here.
 class NPC(models.Model):
@@ -18,10 +19,13 @@ class NPC(models.Model):
         return markdown.markdown(self.body)
 
     def next_post(self):
-        return self.get_next_by_published_date(published_date__lte=datetime.now())
+        return self.get_next_by_title()
 
     def previous_post(self):
-        return self.get_previous_by_published_date()
+        return self.get_previous_by_title()
+
+    def first_letter(self):
+        return self.title[0].upper()
 
     def url(self):
         utc = pytz.timezone('UTC')
