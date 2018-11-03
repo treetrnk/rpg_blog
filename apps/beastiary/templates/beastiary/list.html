@@ -22,17 +22,22 @@
 						{% for npc in npcs %}
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="heading-{{ npc.slug }}">
+									<a href="/npc/{{ letter }}/{{ npc.slug }}" data-toggle="tooltip" title="Link" class="pull-right"><i class="fa fa-link"></i></a>
 									<a role="button" data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapse-{{ npc.slug }}" aria-expanded="true" aria-controls="collapseOne">
 										<h4 class="panel-title">
 											{{ npc.title }}
 										</h4>
 									</a>
 								</div>
-								<div id="collapse-{{ npc.slug }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-									<div class="panel-body">
-										{{ npc.html_body|safe }}
+								{% if npc.slug == selected.slug %}
+									<div id="collapse-{{ npc.slug }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+								{% else %}
+									<div id="collapse-{{ npc.slug }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+								{% endif %}
+										<div class="panel-body">
+											{{ npc.html_body|safe }}
+										</div>
 									</div>
-								</div>
 							</div>
 						{% endfor %}
 					</div>
