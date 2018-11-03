@@ -12,7 +12,11 @@ def npcs(request, letter='A', slug=''):
 
     context["alphabet"] = "<h2 class='text-center'>";
     for cletter in alphabet:
-        context["alphabet"] += "<a href='/npc/" + cletter + "'>" + cletter + "</a> &nbsp;"
+        exists = NPC.objects.filter(title__startswith=cletter)
+        if exists: 
+            context["alphabet"] += "<a href='/npc/" + cletter + "'>" + cletter + "</a> &nbsp;"
+        else:
+            context["alphabet"] += cletter + " &nbsp;"
     context["alphabet"] += "</h2>"
 
     npcs = NPC.objects.filter(title__startswith=letter).order_by("title")
