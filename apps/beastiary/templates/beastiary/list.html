@@ -15,7 +15,9 @@
 			<div class="col-md-9">
 				<br />
 				<h1>Fate NPCs - {{ letter }}</h1>
-				<br />
+				<hr />
+				{{ alphabet|safe }}
+				<hr />
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						{% for npc in npcs %}
 							<div class="panel panel-default">

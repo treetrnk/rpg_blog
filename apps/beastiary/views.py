@@ -3,12 +3,26 @@ from .models import NPC
 from apps.blog.models import Tag
 
 def npcs(request, letter='A', slug=''):
-    npcs = NPC.objects.filter(title__startswith=letter)
+    context = {}
+    context["letter"] = letter.upper()
+    alphabet = [
+        'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+        'S','T','U','V','W','X','Y','Z',
+    ]
+
+    context["alphabet"] = "<h2 class='text-center'>";
+    for cletter in alphabet:
+        context["alphabet"] += "<a href='/npc/" + cletter + "'>" + cletter + "</a> &nbsp;"
+    context["alphabet"] += "</h2>"
+
+    npcs = NPC.objects.filter(title__startswith=letter).order_by("title")
+    context["npcs"] = npcs
     try:
-        selected = NPC.objects.get(slug=slug)
+        context["selected"] = NPC.objects.get(slug=slug)
     except:
-        selected = ''
-    meta = {
+        context["selected"] = ''
+
+    context["meta"] = {
         'title': 'NPCs (' + str(letter) + ') - rpg stuff',
         'image': '',
         'favicon': '/static/images/favicon.png',
@@ -22,5 +36,8 @@ def npcs(request, letter='A', slug=''):
         'description': npcs.description(),
     }
     """
-    tags = Tag.objects.all().order_by('name')
-    return render(request, 'beastiary/list.html', {'letter': letter, 'npcs': npcs, 'selected': selected.title, 'meta': meta, 'tags': tags})
+    context["tags"] = Tag.objects.all().order_by('name')
+    print(letter)
+    print(npcs)
+    print(context["npcs"])
+    return render(request, 'beastiary/list.html', context)
