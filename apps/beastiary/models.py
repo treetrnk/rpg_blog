@@ -8,15 +8,32 @@ class NPC(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, null=True)
     summary = models.TextField(max_length=300, blank=True, null=True)
-    body = models.TextField(max_length=20000)
+    description = models.TextField(max_length=20000, blank=True, null=True)
+    aspects = models.TextField(max_length=20000, blank=True, null=True)
+    attributes = models.TextField(max_length=20000, blank=True, null=True)
+    stunts = models.TextField(max_length=20000, blank=True, null=True)
+    uses = models.TextField(max_length=20000, blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
-    banner = models.ForeignKey(Image, on_delete=models.SET_NULL, blank=True, null=True)
+    image = models.URLField(blank=True, null=True)
+    image_src = models.URLField(blank=True, null=True)
     user = models.ForeignKey(User, models.PROTECT)
     edit_date = models.DateTimeField(auto_now=True)
-    published_date = models.DateTimeField()
+    published = models.BooleanField(default=False)
 
-    def html_body(self):
-        return markdown.markdown(self.body)
+    def html_description(self):
+        return markdown.markdown(self.description)
+
+    def html_aspects(self):
+        return markdown.markdown(self.aspects)
+
+    def html_attributes(self):
+        return markdown.markdown(self.attributes)
+
+    def html_stunts(self):
+        return markdown.markdown(self.stunts)
+
+    def html_uses(self):
+        return markdown.markdown(self.uses)
 
     def next_post(self):
         return self.get_next_by_title()
@@ -28,23 +45,11 @@ class NPC(models.Model):
         return self.title[0].upper()
 
     def url(self):
-        utc = pytz.timezone('UTC')
-        year = str(self.published_date.year)
-        month = str('%02d' % self.published_date.month)
-        day = str('%02d' % self.published_date.day)
-        return '/' + year + '/' + month + '/' + day + '/' + self.slug
+        return '/npc/' + self.title[0] + '/' + self.slug
 
-    def banner_placeholder_url(self):
-        return '/static/images/loading.gif'
-
-    def banner_url(self):
-        if self.banner is None:
-            return '/media/default.png'
-        return '/media/' + self.banner.filename()
-
-    def clean_body(self):
+    def clean_description(self):
         pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})'
-        return re.sub(pattern, '', self.body)
+        return re.sub(pattern, '', self.description)
 
     def is_published(self):
         if self.published_date <= timezone.now():
@@ -52,9 +57,9 @@ class NPC(models.Model):
         else:
             return False
 
-    def description(self):
+    def meta_summary(self):
         if self.summary is None or not self.summary:
-            return self.clean_body()[0:295] + '...'
+            return self.clean_description()[0:295] + '...'
         return self.summary + '...'
 
     def code(self):
@@ -66,4 +71,4 @@ class NPC(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-published_date', 'title']
+        ordering = ['title']

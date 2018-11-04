@@ -35,7 +35,38 @@
 									<div id="collapse-{{ npc.slug }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 								{% endif %}
 										<div class="panel-body">
-											{{ npc.html_body|safe }}
+
+											{% if npc.image %}
+												<div class="thumbnail col-sm-5 col-xs-6 pull-right text-center">
+													<img src="{{ npc.image }}" class="zoom-img img-responsive" />
+													{% if npc.image_src %}
+													<a href="{{ npc.image_src }}" target="_blank">
+															<i class="fas fa-external-link-alt"></i> Source
+														</a>
+													{% endif %}
+												</div>
+											{% endif %}
+
+											{% if npc.description %}
+												<h3>Description</h3>
+												{{ npc.html_description|safe }}
+											{% endif %}
+											{% if npc.aspects %}
+												<h3>Aspects</h3>
+												{{ npc.html_aspects|safe }}
+											{% endif %}
+											{% if npc.attributes %}
+												<h3>Attributes</h3>
+												{{ npc.html_attributes|safe }}
+											{% endif %}
+											{% if npc.stunts %}
+												<h3>Stunts</h3>
+												{{ npc.html_stunts|safe }}
+											{% endif %}
+											{% if npc.uses %}
+												<h3>Scene Ideas</h3>
+												{{ npc.html_uses|safe }}
+											{% endif %}
 										</div>
 									</div>
 							</div>

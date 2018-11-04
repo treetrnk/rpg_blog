@@ -3,7 +3,7 @@ from django.utils.html import format_html
 from .models import NPC
 
 class NPCAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'get_url', 'banner', 'user', 'published_date')
+    list_display = ('title', 'slug', 'get_url', 'image', 'user', 'published')
     prepopulated_fields = {'slug': ('title',)}
     def get_url(self, obj):
         return format_html(
