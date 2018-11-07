@@ -67,6 +67,13 @@
 												<h3>Scene Ideas</h3>
 												{{ npc.html_uses|safe }}
 											{% endif %}
+
+											<br />
+											<i class="fa fa-tags"></i> Tags:
+											{% for tag in npc.tags.all %}
+												<a href="/npc/{{ tag }}"><span class="label label-default">{{ tag }}</span></a>
+											{% endfor %}
+											<br />
 										</div>
 									</div>
 							</div>
