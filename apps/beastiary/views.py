@@ -21,9 +21,10 @@ def npcs(request, letter='A', slug=''):
             context["alphabet"] += cletter + " &nbsp;"
     context["alphabet"] += "</h2>"
 
-    if context["tag"]:
-        npcs = NPC.objects.filter(tags__name__in=[letter]).filter(published=True).order_by("title")
-    else: 
+    try:
+        if context["tag"]:
+            npcs = NPC.objects.filter(tags__name__in=[letter]).filter(published=True).order_by("title")
+    except:
         npcs = NPC.objects.filter(title__startswith=letter).filter(published=True).order_by("title")
     context["npcs"] = npcs
     try:
