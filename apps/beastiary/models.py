@@ -44,6 +44,12 @@ class NPC(models.Model):
     def first_letter(self):
         return self.title[0].upper()
 
+    def is_pregen(self):
+        for tag in self.tags.all():
+            if tag.name == "pregen":
+                return True
+        return False
+
     def url(self):
         return '/npc/' + self.title[0] + '/' + self.slug
 
