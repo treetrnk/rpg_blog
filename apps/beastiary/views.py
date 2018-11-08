@@ -15,7 +15,7 @@ def npcs(request, letter='A', slug=''):
     context["alphabet"] = "<h2 class='text-center'>";
     for nav_letter in alphabet:
         exists = NPC.objects.filter(title__startswith=nav_letter).filter(published=True)
-        selected = "alpha-selected" if letter is nav_letter else ""
+        selected = "alpha-selected" if context["letter"] == nav_letter else ""
         if exists: 
             context["alphabet"] += "<a href='/beastiary/" + nav_letter + "' class='" + selected + "'>" + nav_letter + "</a> &nbsp;"
         else:
@@ -47,8 +47,6 @@ def npcs(request, letter='A', slug=''):
         'description': npcs.description(),
     }
     """
-    print(letter)
-    print(context["npcs"])
     context["tags"] = Tag.objects.all().order_by('name')
     return render(request, 'beastiary/list.html', context)
 
