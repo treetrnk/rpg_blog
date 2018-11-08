@@ -26,11 +26,12 @@
 					or nonplayer characters in your games. 
 					<!--All NPCs are designed as suggestions. Feel free to adjust them to fit your game properly.-->
 				</p>
+				<br />
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						{% for npc in npcs %}
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="heading-{{ npc.slug }}">
-									<a href="/npc/{{ letter }}/{{ npc.slug }}" data-toggle="tooltip" title="Link" class="pull-right"><i class="fa fa-link"></i></a>
+									<a href="/beastiary/{{ letter }}/{{ npc.slug }}" data-toggle="tooltip" title="Link" class="pull-right"><i class="fa fa-link"></i></a>
 									<a role="button" data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapse-{{ npc.slug }}" aria-expanded="true" aria-controls="collapseOne">
 										<h4 class="panel-title">
 											{{ npc.title }}
@@ -79,7 +80,7 @@
 											<br />
 											<i class="fa fa-tags"></i> Tags:
 											{% for tag in npc.tags.all %}
-												<a href="/npc/{{ tag }}"><span class="label label-default">{{ tag }}</span></a>
+												<a href="/beastiary/{{ tag }}"><span class="label label-default">{{ tag }}</span></a>
 											{% endfor %}
 											<br />
 										</div>
@@ -87,6 +88,10 @@
 							</div>
 						{% endfor %}
 					</div>
+					{% if not npcs %}
+						<h2>No NPCs here yet... Try another letter!</h2>
+						<br />
+					{% endif %}
 					<br />
 					<center>
 						<small class="text-muted">

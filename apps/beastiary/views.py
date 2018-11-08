@@ -13,12 +13,12 @@ def npcs(request, letter='A', slug=''):
     ]
 
     context["alphabet"] = "<h2 class='text-center'>";
-    for cletter in alphabet:
-        exists = NPC.objects.filter(title__startswith=cletter).filter(published=True)
+    for nav_letter in alphabet:
+        exists = NPC.objects.filter(title__startswith=nav_letter).filter(published=True)
         if exists: 
-            context["alphabet"] += "<a href='/npc/" + cletter + "'>" + cletter + "</a> &nbsp;"
+            context["alphabet"] += "<a href='/beastiary/" + nav_letter + "'>" + nav_letter + "</a> &nbsp;"
         else:
-            context["alphabet"] += cletter + " &nbsp;"
+            context["alphabet"] += nav_letter + " &nbsp;"
     context["alphabet"] += "</h2>"
 
     try:
@@ -46,6 +46,8 @@ def npcs(request, letter='A', slug=''):
         'description': npcs.description(),
     }
     """
+    print(letter)
+    print(context["npcs"])
     context["tags"] = Tag.objects.all().order_by('name')
     return render(request, 'beastiary/list.html', context)
 
