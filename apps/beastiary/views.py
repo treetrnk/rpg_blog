@@ -15,8 +15,9 @@ def npcs(request, letter='A', slug=''):
     context["alphabet"] = "<h2 class='text-center'>";
     for nav_letter in alphabet:
         exists = NPC.objects.filter(title__startswith=nav_letter).filter(published=True)
+        selected = "alpha-selected" if letter is nav_letter else ""
         if exists: 
-            context["alphabet"] += "<a href='/beastiary/" + nav_letter + "'>" + nav_letter + "</a> &nbsp;"
+            context["alphabet"] += "<a href='/beastiary/" + nav_letter + "' class='" + selected + "'>" + nav_letter + "</a> &nbsp;"
         else:
             context["alphabet"] += nav_letter + " &nbsp;"
     context["alphabet"] += "</h2>"

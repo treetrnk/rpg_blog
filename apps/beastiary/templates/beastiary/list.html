@@ -14,14 +14,17 @@
 		<div class="row">
 			<div class="col-md-9">
 				<br />
-				<h1>Fate NPCs - {{ letter }}</h1>
+				<h1>Fate Beastiary</h1>
+				{% if tag %}
+				<h3>Tag: <a href="/beastiary/" class="label label-default">{{ tag }}</a></h1>
+				{% endif %}
 				<hr />
 				{{ alphabet|safe }}
 				<hr />
 				<p>
 					These NPCs were created using Fate Core and Accelerated and are 
 					offered as a resource to GMs and players. NPCs with the 
-					<a href="/npc/pregen/" class="label label-default">pregen</a> tag are 
+					<a href="/beastiary/pregen/" class="label label-default">pregen</a> tag are 
 					full-fledged characters that can be used as-is for player characters 
 					or nonplayer characters in your games. 
 					<!--All NPCs are designed as suggestions. Feel free to adjust them to fit your game properly.-->
