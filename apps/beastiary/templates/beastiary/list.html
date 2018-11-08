@@ -18,6 +18,14 @@
 				<hr />
 				{{ alphabet|safe }}
 				<hr />
+				<p>
+					These NPCs were created using Fate Core and Accelerated and are 
+					offered as a resource to GMs and players. NPCs with the 
+					<a href="/npc/pregen/" class="label label-default">pregen</a> tag are 
+					full-fledged characters that can be used as-is for player characters 
+					or nonplayer characters in your games. 
+					<!--All NPCs are designed as suggestions. Feel free to adjust them to fit your game properly.-->
+				</p>
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						{% for npc in npcs %}
 							<div class="panel panel-default">
@@ -79,6 +87,13 @@
 							</div>
 						{% endfor %}
 					</div>
+					<br />
+					<center>
+						<small class="text-muted">
+							Unless stated otherwise, the text of the above NPCs is available under a <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a> license.<br />
+							Art is used without permission. nathanhare.net has no affiliation with the artists and claims no rights to the art.
+						</small>
+					</center>
 				<!---
 				<h1>{{ npcs.title }}</h1>
 				<div class="content">
