@@ -34,7 +34,7 @@
 						{% for npc in npcs %}
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="heading-{{ npc.slug }}">
-									<a href="/beastiary/{{ letter }}/{{ npc.slug }}" data-toggle="tooltip" title="Link" class="pull-right"><i class="fa fa-link"></i></a>
+									<a href="/beastiary/{{ npc.first_letter }}/{{ npc.slug }}" data-toggle="tooltip" title="Link" class="pull-right"><i class="fa fa-link"></i></a>
 									<a role="button" data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapse-{{ npc.slug }}" aria-expanded="true" aria-controls="collapseOne">
 										<h4 class="panel-title">
 											{{ npc.title }}
