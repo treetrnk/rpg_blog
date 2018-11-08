@@ -19,7 +19,7 @@ def npcs(request, letter='A', slug=''):
         if exists: 
             context["alphabet"] += "<a href='/beastiary/" + nav_letter + "' class='" + selected + "'>" + nav_letter + "</a> &nbsp;"
         else:
-            context["alphabet"] += nav_letter + " &nbsp;"
+            context["alphabet"] += "<span class='" + selected + "'>" + nav_letter + "</span> &nbsp;"
     context["alphabet"] += "</h2>"
 
     try:

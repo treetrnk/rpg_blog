@@ -531,9 +531,11 @@
 
 				enableImageViewer();
 
+				/*
 				setTimeout(function() {
 					wiggleIt($("#subscribe"));
 				}, 4000);
+				*/
 
 				/*
 				setInterval(function() {
@@ -578,15 +580,19 @@
 
 					if ($(window).scrollTop() > curPos) {
 						$('#subscribe').css({bottom: -100});
+						/*
 						if ($('#subscribe').hasClass("wiggle")) {
 							$('#subscribe').removeClass("wiggle");
 						}
+						*/
 					} else {
 						$('#subscribe').css({bottom: 10});
 							if ($(window).height() > 700 || $(window).width() > 700) {
+								/*
 								if (!$('#subscribe').hasClass("wiggle")) {
 									$('#subscribe').addClass("wiggle");
 								}
+								*/
 							}
 					}
 
