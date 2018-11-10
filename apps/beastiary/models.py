@@ -5,6 +5,15 @@ import markdown
 import re
 
 class Stress(models.Model):
+    STRESS_CHOICES = (
+        ("1", "1[ ]"),        
+        ("1,1", "1[ ] 1[ ]"),        
+        ("1,1,1", "1[ ] 1[ ] 1[ ]"),        
+        ("1,1,1,1", "1[ ] 1[ ] 1[ ] 1[ ]"),        
+        ("1,2", "1[ ] 2[ ]"),        
+        ("1,2,3", "1[ ] 2[ ] 3[ ]"),        
+        ("1,2,3,4", "1[ ] 2[ ] 3[ ] 4[ ]"),        
+    )
     boxes = models.TextField(max_length=1000)
 
     def html_boxes(self):
@@ -26,8 +35,8 @@ class Consequence(models.Model):
 
     def html_form(self):
         placeholder = str(self.placeholder) if self.placeholder else ""
-        output = "<div class='row'><label class='control-label text-right col-sm-2 col-xs-3'>" + str(self.name) + "</label>"
-        output += "<div class='col-sm-10 col-xs-9'><input type='text' class='form-control input-sm' placeholder='" + placeholder + "' /></div></div>"
+        output = "<div class='row'><label class='control-label text-right col-sm-2 col-xs-6'>" + str(self.name) + "</label>"
+        output += "<div class='col-sm-10 col-xs-6'><input type='text' class='form-control input-sm' placeholder='" + placeholder + "' /></div></div>"
         return output
 
     def __str__(self):
@@ -46,7 +55,7 @@ class NPC(models.Model):
     attributes = models.TextField(max_length=20000, blank=True, null=True)
     stunts = models.TextField(max_length=20000, blank=True, null=True)
     stress = models.ForeignKey(Stress,on_delete=models.PROTECT, blank=True, null=True)
-    consequences = models.ManyToManyField(Consequence, blank=True, null=True)
+    consequences = models.ManyToManyField(Consequence, blank=True)
     uses = models.TextField(max_length=20000, blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
     image = models.URLField(blank=True, null=True)
