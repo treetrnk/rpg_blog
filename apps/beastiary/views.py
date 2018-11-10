@@ -2,13 +2,13 @@ from django.shortcuts import render
 from .models import NPC
 from apps.blog.models import Tag
 
-def npcs(request, letter='A', slug=''):
+def npcs(request, letter='All', slug=''):
     context = {}
-    if len(letter) > 1:
+    if len(letter) > 1 and letter != "All":
         context["tag"] = letter.lower()
     context["letter"] = letter.title()
     alphabet = [
-        'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+        'All','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
         'S','T','U','V','W','X','Y','Z',
     ]
 
@@ -18,12 +18,16 @@ def npcs(request, letter='A', slug=''):
         selected = "alpha-selected" if context["letter"] == nav_letter else ""
         if exists: 
             context["alphabet"] += "<a href='/beastiary/" + nav_letter + "' class='" + selected + "'>" + nav_letter + "</a> &nbsp;"
+        elif nav_letter == "All":
+            context["alphabet"] += "<a href='/beastiary/'>" + nav_letter + "</a> &nbsp;"
         else:
             context["alphabet"] += "<span class='" + selected + "'>" + nav_letter + "</span> &nbsp;"
     context["alphabet"] += "</h2>"
 
     try:
-        if context["tag"]:
+        if letter == "All":
+            npcs = NPC.objects.filter(published=True).order_by("title")
+        elif context["tag"]:
             npcs = NPC.objects.filter(tags__name__in=[letter]).filter(published=True).order_by("title")
     except:
         npcs = NPC.objects.filter(title__startswith=letter).filter(published=True).order_by("title")
@@ -62,6 +66,8 @@ def tag(request, tag):
     for cletter in alphabet:
         exists = NPC.objects.filter(title__startswith=cletter).filter(published=True)
         if exists: 
+            context["alphabet"] += "<a href='/npc/" + cletter + "'>" + cletter + "</a> &nbsp;"
+        elif letter == "All":
             context["alphabet"] += "<a href='/npc/" + cletter + "'>" + cletter + "</a> &nbsp;"
         else:
             context["alphabet"] += cletter + " &nbsp;"
