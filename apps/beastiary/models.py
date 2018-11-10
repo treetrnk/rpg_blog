@@ -20,7 +20,7 @@ class Stress(models.Model):
         return markdown.markdown(self.boxes)
 
     def clean_boxes(self):
-        pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})|(?:hysical)|(?:ental)'
+        pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})|(?:hysical)|(?:ental)|(?:tress)|(?:&nbsp;)'
         return re.sub(pattern, '', self.boxes)
 
     def __str__(self):
