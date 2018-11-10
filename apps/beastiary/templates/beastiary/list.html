@@ -78,6 +78,11 @@
 												<h3>Stunts</h3>
 												{{ npc.html_stunts|safe }}
 											{% endif %}
+											{% if npc.stress or npc.consequences %}
+												<h3>Stress & Consequences</h3>
+												{{ npc.stress.html_boxes|safe }}
+												{{ npc.consequences.html_slots|safe }}
+											{% endif %}
 											{% if npc.uses %}
 												<h3>Scene Ideas</h3>
 												{{ npc.html_uses|safe }}

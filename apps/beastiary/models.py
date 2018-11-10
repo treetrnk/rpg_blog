@@ -2,8 +2,40 @@ from django.db import models
 from django.contrib.auth.models import User
 from apps.blog.models import Tag, Image
 import markdown
+import re
 
-# Create your models here.
+class Stress(models.Model):
+    boxes = models.TextField(max_length=1000)
+
+    def html_boxes(self):
+        return markdown.markdown(self.boxes)
+
+    def clean_boxes(self):
+        pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})|(?:hysical)|(?:ental)'
+        return re.sub(pattern, '', self.boxes)
+
+    def __str__(self):
+        return self.clean_boxes()
+
+    class Meta:
+        ordering = ['boxes']
+
+class Consequence(models.Model):
+    slots = models.TextField(max_length=2000)
+
+    def html_slots(self):
+        return markdown.markdown(self.slots)
+
+    def clean_slots(self):
+        pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})|(?:[\\\\_])'
+        return re.sub(pattern, '', self.slots)
+
+    def __str__(self):
+        return self.clean_slots() 
+
+    class Meta:
+        ordering = ['slots']
+
 class NPC(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, null=True)
@@ -12,11 +44,13 @@ class NPC(models.Model):
     aspects = models.TextField(max_length=20000, blank=True, null=True)
     attributes = models.TextField(max_length=20000, blank=True, null=True)
     stunts = models.TextField(max_length=20000, blank=True, null=True)
+    stress = models.ForeignKey(Stress,on_delete=models.PROTECT, blank=True, null=True)
+    consequences = models.ForeignKey(Consequence,on_delete=models.PROTECT, blank=True, null=True)
     uses = models.TextField(max_length=20000, blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
     image = models.URLField(blank=True, null=True)
     image_src = models.URLField(blank=True, null=True)
-    user = models.ForeignKey(User, models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     edit_date = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
 
@@ -78,3 +112,4 @@ class NPC(models.Model):
 
     class Meta:
         ordering = ['title']
+
