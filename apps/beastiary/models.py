@@ -21,20 +21,21 @@ class Stress(models.Model):
         ordering = ['boxes']
 
 class Consequence(models.Model):
-    slots = models.TextField(max_length=2000)
+    name = models.CharField(max_length=150)
+    placeholder = models.CharField(max_length=150,blank=True,null=True)
 
-    def html_slots(self):
-        return markdown.markdown(self.slots)
-
-    def clean_slots(self):
-        pattern = '(?:\<[\s\S]*?\>)|(?:\!\[[\s\S]*?\]\([\s\S]*?\))|\#|\*|(?:\[)|(?:\]\([\s\S]*?\))|(?:[\n\r]{2,})|(?:[\\\\_])'
-        return re.sub(pattern, '', self.slots)
+    def html_form(self):
+        placeholder = str(self.placeholder) if self.placeholder else ""
+        output = "<div class='row'><label class='control-label text-right col-sm-2 col-xs-3'>" + str(self.name) + "</label>"
+        output += "<div class='col-sm-10 col-xs-9'><input type='text' class='form-control input-sm' placeholder='" + placeholder + "' /></div></div>"
+        return output
 
     def __str__(self):
-        return self.clean_slots() 
+        placeholder = " (" + self.placeholder + ")" if self.placeholder else "" 
+        return self.name + placeholder
 
     class Meta:
-        ordering = ['slots']
+        ordering = ['name','placeholder']
 
 class NPC(models.Model):
     title = models.CharField(max_length=200)
@@ -45,7 +46,7 @@ class NPC(models.Model):
     attributes = models.TextField(max_length=20000, blank=True, null=True)
     stunts = models.TextField(max_length=20000, blank=True, null=True)
     stress = models.ForeignKey(Stress,on_delete=models.PROTECT, blank=True, null=True)
-    consequences = models.ForeignKey(Consequence,on_delete=models.PROTECT, blank=True, null=True)
+    consequences = models.ManyToManyField(Consequence, blank=True, null=True)
     uses = models.TextField(max_length=20000, blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
     image = models.URLField(blank=True, null=True)

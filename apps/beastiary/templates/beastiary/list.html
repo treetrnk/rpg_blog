@@ -81,7 +81,9 @@
 											{% if npc.stress or npc.consequences %}
 												<h3>Stress & Consequences</h3>
 												{{ npc.stress.html_boxes|safe }}
-												{{ npc.consequences.html_slots|safe }}
+												{% for consequence in npc.consequences.all %}
+													{{ consequence.html_form|safe }}
+												{% endfor %}
 											{% endif %}
 											{% if npc.uses %}
 												<h3>Scene Ideas</h3>
