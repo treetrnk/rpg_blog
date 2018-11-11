@@ -85,10 +85,14 @@
 											{% endif %}
 											{% if npc.stress or npc.consequences.all %}
 												<h3>Stress & Consequences</h3>
+												<div class="row">
+												<div class="col-xs-7">
 												{{ npc.stress.html_boxes|safe }}
 												{% for consequence in npc.consequences.all %}
 													{{ consequence.html_form|safe }}
 												{% endfor %}
+												</div>
+												</div>
 											{% endif %}
 											{% if npc.uses %}
 												<h3>Scene Ideas</h3>

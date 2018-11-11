@@ -35,8 +35,8 @@ class Consequence(models.Model):
 
     def html_form(self):
         placeholder = str(self.placeholder) if self.placeholder else ""
-        output = "<div class='row'><label class='control-label text-right col-sm-2 col-xs-6'>" + str(self.name) + "</label>"
-        output += "<div class='col-sm-10 col-xs-6'><input type='text' class='form-control input-sm' placeholder='" + placeholder + "' /></div></div>"
+        output = "<div class='row'><label class='control-label text-right col-sm-4 col-xs-6'>" + str(self.name) + "</label>"
+        output += "<div class='col-sm-8 col-xs-6'><input type='text' class='form-control input-sm' placeholder='" + placeholder + "' /></div></div>"
         return output
 
     def __str__(self):
