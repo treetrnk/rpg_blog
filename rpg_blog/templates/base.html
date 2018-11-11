@@ -537,9 +537,7 @@
 
 				$(".anchor-collapse").click(function() {
 					var target = $(this).data("target");
-					$(target).collapse({
-						toggle: true
-					})
+					$(target).click();
 				});
 
 				var curPos = $(window).scrollTop();
