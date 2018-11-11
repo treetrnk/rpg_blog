@@ -14,7 +14,7 @@ class Stress(models.Model):
         ("1,2,3", "1[ ] 2[ ] 3[ ]"),        
         ("1,2,3,4", "1[ ] 2[ ] 3[ ] 4[ ]"),        
     )
-    boxes = models.TextField(max_length=1000)
+    boxes = models.TextField(max_length=3000)
 
     def html_boxes(self):
         return markdown.markdown(self.boxes)
