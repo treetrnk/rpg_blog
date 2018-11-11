@@ -68,7 +68,7 @@
 											{% endif %}
 
 											{% if npc.description %}
-												<h3>Description</h3>
+												<h3>About</h3>
 												{{ npc.html_description|safe }}
 											{% endif %}
 											{% if npc.aspects %}
@@ -151,33 +151,31 @@
 				<hr />
 			</div>
 		</div>
-		{% if npc.is_published %}
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<hr class="clearfix" />
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<hr class="clearfix" />
 
-					<div id="disqus_thread"></div>
-					<script>
+				<div id="disqus_thread"></div>
+				<script>
 
-						/**
-						*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-						*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-						var disqus_config = function () {
-						this.page.url = '{{ BASE_URL }}{{ npcs.url }}';  // Replace PAGE_URL with your page's canonical URL variable
-						this.page.identifier = '{{ npcs.slug }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-						};
-						(function() { // DON'T EDIT BELOW THIS LINE
-						var d = document, s = d.createElement('script');
-						s.src = 'https://rpgstuff.disqus.com/embed.js';
-						s.setAttribute('data-timestamp', +new Date());
-						(d.head || d.body).appendChild(s);
-						})();
-					</script>
-					<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					/**
+					*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+					*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+					var disqus_config = function () {
+					this.page.url = '{{ BASE_URL }}/beastiary/';  // Replace PAGE_URL with your page's canonical URL variable
+					this.page.identifier = 'beastiary'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+					};
+					(function() { // DON'T EDIT BELOW THIS LINE
+					var d = document, s = d.createElement('script');
+					s.src = 'https://rpgstuff.disqus.com/embed.js';
+					s.setAttribute('data-timestamp', +new Date());
+					(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-			</div>
 		</div>
-	{% endif %}
+	</div>
 	<div class="row">
 		<div class="col-xs-12 text-center text-muted">
 				<br />
