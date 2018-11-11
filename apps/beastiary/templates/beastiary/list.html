@@ -36,9 +36,10 @@
 				<br />
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						{% for npc in npcs %}
+									<a class="anchor" id="{{ npc.slug }}"></a>
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="heading-{{ npc.slug }}">
-									<a href="/beastiary/{{ npc.first_letter }}/{{ npc.slug }}" data-toggle="tooltip" title="Link" class="pull-right"><i class="fa fa-link"></i></a>
+									<a href="#{{ npc.slug }}" data-toggle="tooltip" title="Link" data-target="#collapse-{{ npc.slug }}" class="pull-right anchor-collapse"><i class="fa fa-link"></i></a>
 									<a role="button" data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapse-{{ npc.slug }}" aria-expanded="true" aria-controls="collapseOne">
 										<h4 class="panel-title">
 											{% if npc.is_pregen %}

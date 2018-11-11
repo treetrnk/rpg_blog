@@ -263,6 +263,12 @@
 				40%, 60% {
 					transform: rotate(10deg);
 				}
+				a.anchor {
+					display: block;
+					position: relative;
+					top: -125px;
+					visibility: hidden;
+				}
 			}
 		</style>
 	</head>
@@ -519,6 +525,21 @@
 			$(document).ready(function () {
 				$('.lazy').Lazy({
 					effect: 'fadeIn'
+				});
+
+				if (window.location.hash) {
+					console.log(window.location.hash);
+					var slug = window.location.hash.substring(1, window.location.hash.length);
+					$('#collapse-' + slug).collapse({
+						toggle: true
+					})
+				}
+
+				$(".anchor-collapse").click(function() {
+					var target = $(this).data("target");
+					$(target).collapse({
+						toggle: true
+					})
 				});
 
 				var curPos = $(window).scrollTop();
