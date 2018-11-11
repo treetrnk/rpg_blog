@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import NPC
-from apps.blog.models import Tag
+from apps.blog.models import Tag,Post
 
 def npcs(request, letter='All', slug=''):
     context = {}
@@ -11,6 +11,8 @@ def npcs(request, letter='All', slug=''):
         'All','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
         'S','T','U','V','W','X','Y','Z',
     ]
+
+    context["post"] = Post.objects.get(slug="beastiary")
 
     context["alphabet"] = "<h2 class='text-center'>";
     for nav_letter in alphabet:
@@ -39,46 +41,6 @@ def npcs(request, letter='All', slug=''):
 
     context["meta"] = {
         'title': 'NPCs (' + str(letter) + ') - rpg stuff',
-        'image': '',
-        'favicon': '/static/images/favicon.png',
-        'description': 'farts',
-    }
-    """
-    meta = {
-        'title': npcs.title + ' - rpg stuff',
-        'image': str(npcs.banner_url()),
-        'favicon': '/static/images/favicon.png',
-        'description': npcs.description(),
-    }
-    """
-    context["tags"] = Tag.objects.all().order_by('name')
-    return render(request, 'beastiary/list.html', context)
-
-def tag(request, tag):
-    context = {}
-    context["tag"] = tag.lower()
-    alphabet = [
-        'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
-        'S','T','U','V','W','X','Y','Z',
-    ]
-
-    context["alphabet"] = "<h2 class='text-center'>";
-    for cletter in alphabet:
-        exists = NPC.objects.filter(title__startswith=cletter).filter(published=True)
-        if exists: 
-            context["alphabet"] += "<a href='/npc/" + cletter + "'>" + cletter + "</a> &nbsp;"
-        elif letter == "All":
-            context["alphabet"] += "<a href='/npc/" + cletter + "'>" + cletter + "</a> &nbsp;"
-        else:
-            context["alphabet"] += cletter + " &nbsp;"
-    context["alphabet"] += "</h2>"
-
-    npcs = NPC.objects.filter(tags__name__in=[tag]).filter(published=True).order_by("title")
-    context["npcs"] = npcs
-    context["selected"] = ''
-
-    context["meta"] = {
-        'title': 'NPCs (' + str(tag) + ') - rpg stuff',
         'image': '',
         'favicon': '/static/images/favicon.png',
         'description': 'farts',
