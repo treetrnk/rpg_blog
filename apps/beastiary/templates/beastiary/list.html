@@ -36,8 +36,8 @@
 				<br />
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						{% for npc in npcs %}
-									<a class="anchor" id="{{ npc.slug }}"></a>
 							<div class="panel panel-default">
+									<a class="anchor" id="{{ npc.slug }}"></a>
 								<div class="panel-heading" role="tab" id="heading-{{ npc.slug }}">
 									<a href="#{{ npc.slug }}" data-toggle="tooltip" title="Link" data-target="#link-{{ npc.slug }}" class="pull-right anchor-collapse"><i class="fa fa-link"></i></a>
 									<a role="button" id="link-{{ npc.slug }}" data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapse-{{ npc.slug }}" aria-expanded="true" aria-controls="collapseOne">

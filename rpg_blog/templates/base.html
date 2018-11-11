@@ -530,14 +530,15 @@
 				if (window.location.hash) {
 					console.log(window.location.hash);
 					var slug = window.location.hash.substring(1, window.location.hash.length);
-					$('#collapse-' + slug).collapse({
-						toggle: true
-					})
+					$('#link-' + slug).click();
 				}
 
 				$(".anchor-collapse").click(function() {
 					var target = $(this).data("target");
-					$(target).click();
+					var div = $(target).attr("href");
+					if (!$(div).hasClass("in")) {
+						$(target).click();
+					}
 				});
 
 				var curPos = $(window).scrollTop();
