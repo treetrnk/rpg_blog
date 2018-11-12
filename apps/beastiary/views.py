@@ -41,7 +41,7 @@ def npcs(request, letter='All', slug=''):
 
     context["meta"] = {
         'title': 'Beastiary (' + str(context["letter"]) + ') - rpg stuff',
-        'image': '',
+        'image': '/static/images/logo.png',
         'favicon': '/static/images/favicon.png',
         'description': 'A list of pregenerated NPC and monster stats to use in you Fate Core games. The list includes: ',
     }
