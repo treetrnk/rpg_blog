@@ -84,11 +84,15 @@
 											{% endif %}
 
 											<br />
-											<i class="fa fa-tags"></i> Tags:
-											{% for tag in npc.tags.all %}
-												<a href="/beastiary/{{ tag }}"><span class="label label-default">{{ tag }}</span></a>
-											{% endfor %}
-											<br />
+											<div class="row">
+												<div class="col-xs-12">
+													<br />
+													<i class="fa fa-tags clearfix"></i> Tags:
+													{% for tag in npc.tags.all %}
+														<a href="/beastiary/{{ tag }}"><span class="label label-default">{{ tag }}</span></a>
+													{% endfor %}
+												</div>
+											</div>
 										</div>
 									</div>
 							</div>
