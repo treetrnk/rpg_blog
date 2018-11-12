@@ -40,18 +40,15 @@ def npcs(request, letter='All', slug=''):
         context["selected"] = ''
 
     context["meta"] = {
-        'title': 'NPCs (' + str(letter) + ') - rpg stuff',
+        'title': 'Beastiary (' + str(context["letter"]) + ') - rpg stuff',
         'image': '',
         'favicon': '/static/images/favicon.png',
-        'description': 'farts',
+        'description': 'A list of pregenerated NPC and monster stats to use in you Fate Core games. The list includes: ',
     }
-    """
-    meta = {
-        'title': npcs.title + ' - rpg stuff',
-        'image': str(npcs.banner_url()),
-        'favicon': '/static/images/favicon.png',
-        'description': npcs.description(),
-    }
-    """
+
+    for npc in npcs:
+        context["meta"]["description"] += npc.title + " "
+    context["meta"]["description"] = context["meta"]["description"][0:296] + "..."
+
     context["tags"] = Tag.objects.all().order_by('name')
     return render(request, 'beastiary/list.html', context)
