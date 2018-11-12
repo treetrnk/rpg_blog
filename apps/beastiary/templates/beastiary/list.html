@@ -18,8 +18,6 @@
 				{% if tag %}
 				<h3>Tag: <a href="/beastiary/" class="label label-default">{{ tag }}</a></h1>
 				{% endif %}
-				<br />
-				{{ post.html_body|safe }}
 				<hr />
 				{{ alphabet|safe }}
 				<hr />
@@ -66,7 +64,7 @@
 												{{ npc.html_aspects|safe }}
 											{% endif %}
 											{% if npc.attributes %}
-												<h3>Attributes</h3>
+												<h3>Skills</h3>
 												{{ npc.html_attributes|safe }}
 											{% endif %}
 											{% if npc.stunts %}
@@ -75,14 +73,10 @@
 											{% endif %}
 											{% if npc.stress or npc.consequences.all %}
 												<h3>Stress & Consequences</h3>
-												<div class="row">
-												<div class="col-xs-7">
 												{{ npc.stress.html_boxes|safe }}
 												{% for consequence in npc.consequences.all %}
 													{{ consequence.html_form|safe }}
 												{% endfor %}
-												</div>
-												</div>
 											{% endif %}
 											{% if npc.uses %}
 												<h3>Scene Ideas</h3>
@@ -137,6 +131,8 @@
 			</div>
 			<div class="col-md-3">
 				<br />
+				<h2>About the Beastiary</h2>
+				{{ post.html_body|safe }}
 				{% include "blog/sidebar.html" %}
 				<hr />
 			</div>
