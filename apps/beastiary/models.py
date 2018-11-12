@@ -71,7 +71,8 @@ class NPC(models.Model):
         return markdown.markdown(self.aspects)
 
     def html_attributes(self):
-        return markdown.markdown(self.attributes)
+        attrs = re.sub(r"\r\n", "<br />", self.attributes)
+        return markdown.markdown(attrs)
 
     def html_stunts(self):
         return markdown.markdown(self.stunts)
