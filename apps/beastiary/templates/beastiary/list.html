@@ -16,7 +16,7 @@
 				<br />
 				<h1>Fate Bestiary</h1>
 				{% if tag %}
-				<h3>Tag: <a href="/beastiary/" class="label label-default">{{ tag }}</a></h1>
+				<h3>Tag: <a href="/bestiary/" class="label label-default">{{ tag }}</a></h1>
 				{% endif %}
 				<hr />
 				{{ alphabet|safe }}
@@ -89,7 +89,7 @@
 													<br />
 													<i class="fa fa-tags clearfix"></i> Tags:
 													{% for tag in npc.tags.all %}
-														<a href="/beastiary/{{ tag }}"><span class="label label-default">{{ tag }}</span></a>
+														<a href="/bestiary/{{ tag }}"><span class="label label-default">{{ tag }}</span></a>
 													{% endfor %}
 												</div>
 											</div>
