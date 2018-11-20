@@ -12,7 +12,7 @@ def npcs(request, letter='All', slug=''):
         'S','T','U','V','W','X','Y','Z',
     ]
 
-    context["post"] = Post.objects.get(slug="beastiary")
+    context["post"] = Post.objects.get(slug="bestiary")
 
     context["alphabet"] = "<h2 class='text-center'>";
     for nav_letter in alphabet:
@@ -40,7 +40,7 @@ def npcs(request, letter='All', slug=''):
         context["selected"] = ''
 
     context["meta"] = {
-        'title': 'Beastiary (' + str(context["letter"]) + ') - rpg stuff',
+        'title': 'Bestiary (' + str(context["letter"]) + ') - rpg stuff',
         'image': '/static/images/logo.png',
         'favicon': '/static/images/favicon.png',
         'description': 'A list of pregenerated NPC and monster stats to use in you Fate Core games. The list includes: ',
