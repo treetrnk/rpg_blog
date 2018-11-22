@@ -14,6 +14,7 @@ def npcs(request, letter='All', slug=''):
 
     context["post"] = Post.objects.get(slug="bestiary")
 
+    context["total_npcs"] = NPC.objects.filter(published=True).count()
     context["alphabet"] = "<h2 class='text-center'>";
     for nav_letter in alphabet:
         exists = NPC.objects.filter(title__startswith=nav_letter).filter(published=True)
